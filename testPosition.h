@@ -21,6 +21,7 @@ class TestPosition
 public:
    void run()
    {
+      
       test_Position_Default();
       test_Position_Nondefault();
       test_Position_Copy();
@@ -33,7 +34,9 @@ public:
    
    void test_Position_Default() const
    {
-      // setup
+      
+
+       // setup
       // exercise
       Position pos;
       // verify

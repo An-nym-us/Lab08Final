@@ -9,12 +9,27 @@
 
 #include "test.h"
 #include "testPosition.h"
+#include "testEnvironment.h"
+
 
 /*****************************************************************
  * TEST RUNNER
  * Runs all the unit tests
  ****************************************************************/
+int main()
+{
+	testRunner();
+}
+
+
+
+
 void testRunner()
 {
-   TestPosition().run();
+
+	TestPosition().run();
+	TestEnvironment().run();
+
+
+
 }
