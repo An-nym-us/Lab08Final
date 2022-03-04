@@ -3,13 +3,13 @@
 
 #include <iostream>
 #include "position.h"
-#include "environment.h"
+#include "environmentalConstants.h"
 #include <cassert>
 
 
 using namespace std;
 
-class TestEnvironment
+class TestEnvironmentalConstants
 {
 public:
 	void run()
@@ -19,19 +19,17 @@ public:
 
 
 
-
-
 	//Testing the testing system case 1
 	void get_zero_alt()
 	{
-		Environment tempinstnace;
+		EnvironmentalConstants tempinstnace;
 		tempinstnace.changethis = 5;
 		bool temp = false;
 
 		int value = tempinstnace.error_checking_1(5);
 		if (value == 25)
 			temp = true;
-		
+
 		assert(temp == true);
 	}
 

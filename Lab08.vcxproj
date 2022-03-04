@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="environment.cpp" />
+    <ClCompile Include="environmentalConstants .cpp" />
     <ClCompile Include="ground.cpp" />
     <ClCompile Include="Lab08.cpp" />
     <ClCompile Include="position.cpp" />
@@ -149,10 +150,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="environment.h" />
+    <ClInclude Include="environmentalConstants.h" />
     <ClInclude Include="ground.h" />
     <ClInclude Include="position.h" />
     <ClInclude Include="test.h" />
     <ClInclude Include="testEnvironment.h" />
+    <ClInclude Include="testEnvironmentalConstants.h" />
     <ClInclude Include="testPosition.h" />
     <ClInclude Include="uiDraw.h" />
     <ClInclude Include="uiInteract.h" />

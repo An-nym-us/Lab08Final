@@ -10,6 +10,7 @@
 #include "test.h"
 #include "testPosition.h"
 #include "testEnvironment.h"
+#include "testEnvironmentalConstants.h"
 
 
 /*****************************************************************
@@ -29,7 +30,6 @@ void testRunner()
 
 	TestPosition().run();
 	TestEnvironment().run();
-
-
+	TestEnvironmentalConstants().run();
 
 }

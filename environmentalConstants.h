@@ -5,22 +5,18 @@
 
 
 
-class Environment
+class EnvironmentalConstants
 {
-	friend class TestEnvironment;
+	friend class TestEnvironmentalConstants;
 
 
 
 
-public:	
+public:
 	//Testing the testing system case 1
 	int error_checking_1(int data);
 
-
-
-
 private:
-
 	int changethis = 0;
 
 };
