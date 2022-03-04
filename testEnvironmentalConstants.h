@@ -15,22 +15,36 @@ public:
 	void run()
 	{
 		get_zero_alt();
+
+
+
 	}
+
+	/*****************************************************************
+	* All Test Case Go Below Here
+	*****************************************************************/
 
 
 
 	//Testing the testing system case 1
 	void get_zero_alt()
 	{
+		// set up
 		EnvironmentalConstants tempinstnace;
 		tempinstnace.changethis = 5;
-		bool temp = false;
+		bool value = false;
 
-		int value = tempinstnace.error_checking_1(5);
-		if (value == 25)
-			temp = true;
 
-		assert(temp == true);
+		// exercise
+		if (tempinstnace.error_checking_1(5) == 25)
+			value = true;
+
+		// verify
+		assert(value == true);
+
+
+		// teardown
+		delete& tempinstnace;
 	}
 
 };
