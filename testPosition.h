@@ -34,8 +34,6 @@ public:
    
    void test_Position_Default() const
    {
-      
-
        // setup
       // exercise
       Position pos;
