@@ -11,7 +11,7 @@
 #include "testPosition.h"
 #include "testEnvironment.h"
 #include "testEnvironmentalConstants.h"
-
+#include "testVelocity.h"
 
 /*****************************************************************
  * TEST RUNNER
@@ -31,5 +31,7 @@ void testRunner()
 	TestPosition().run();
 	TestEnvironment().run();
 	TestEnvironmentalConstants().run();
+    TestVelocity().run();
+    
 
 }
