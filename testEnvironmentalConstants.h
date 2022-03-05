@@ -15,8 +15,6 @@ class TestEnvironmentalConstants
 public:
 	void run()
 	{
-		get_zero_alt();
-
 		test_lower_bounds_0();
 		test_lower_bounds_1();
 		test_lower_bounds_2();
@@ -35,26 +33,7 @@ public:
 	/*****************************************************************
 	* All Test Case Go Below Here
 	*****************************************************************/
-	//Testing the testing system case 1
-	void get_zero_alt()
-	{
-		//Set up
-		EnvironmentalConstants tempinstnace;
-		tempinstnace.changethis = 5;
-		bool value = false;
 
-
-		//Exercise
-		if (tempinstnace.error_checking_1(5) == 25)
-			value = true;
-
-		//Verify
-		assert(value == true);
-
-
-		//Teardown
-		delete& tempinstnace;
-	}
 
 
 

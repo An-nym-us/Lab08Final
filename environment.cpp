@@ -2,11 +2,7 @@
 
 
 
-//Testing the testing system case 1
-int Environment::error_checking_1(int data)
-{
-	return data * changethis;
-}
+
 
 
 double Environment:: interpolation_check(double d0, double r0, double d1, double r1, double d)

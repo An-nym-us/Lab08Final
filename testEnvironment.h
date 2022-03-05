@@ -14,7 +14,7 @@ class TestEnvironment
 public:
 	void run()
 	{
-		get_zero_alt();
+
         test_same_point();
         test_middle_x_change();
         test_middle_both_change();
@@ -31,26 +31,6 @@ public:
 	*****************************************************************/
 
 
-	//Testing the testing system case 1
-	void get_zero_alt()
-	{
-		// set up
-		Environment tempinstnace;
-		tempinstnace.changethis = 5;
-		bool value = false;
-
-
-		// exercise
-		if (tempinstnace.error_checking_1(5) == 25)
-			value = true;
-
-		// verify
-		assert(value == true);
-
-
-		// teardown
-		delete& tempinstnace;
-	}
     
     void test_same_point()
     {
