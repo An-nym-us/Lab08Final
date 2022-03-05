@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		B205DFAD27D2ACE700FB2D18 /* environmentalConstants .cpp in Sources */ = {isa = PBXBuildFile; fileRef = B205DFA727D2ACE600FB2D18 /* environmentalConstants .cpp */; };
 		B205DFAE27D2ACE700FB2D18 /* environment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B205DFA827D2ACE600FB2D18 /* environment.cpp */; };
+		B205DFB127D2E0C700FB2D18 /* velocity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B205DFB027D2E0C700FB2D18 /* velocity.cpp */; };
+		B205DFB327D2E0DA00FB2D18 /* testVelocity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B205DFB227D2E0DA00FB2D18 /* testVelocity.cpp */; };
 		C1D4EB3E2577FC14002B56E3 /* ground.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1D4EB322577FC12002B56E3 /* ground.cpp */; };
 		C1D4EB3F2577FC14002B56E3 /* position.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1D4EB332577FC12002B56E3 /* position.cpp */; };
 		C1D4EB402577FC14002B56E3 /* Lab08.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1D4EB342577FC12002B56E3 /* Lab08.cpp */; };
@@ -38,6 +40,9 @@
 		B205DFAA27D2ACE700FB2D18 /* environmentalConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = environmentalConstants.h; sourceTree = "<group>"; };
 		B205DFAB27D2ACE700FB2D18 /* environment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = environment.h; sourceTree = "<group>"; };
 		B205DFAC27D2ACE700FB2D18 /* testEnvironment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testEnvironment.h; sourceTree = "<group>"; };
+		B205DFAF27D2E0B600FB2D18 /* velocity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = velocity.h; sourceTree = "<group>"; };
+		B205DFB027D2E0C700FB2D18 /* velocity.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = velocity.cpp; sourceTree = "<group>"; };
+		B205DFB227D2E0DA00FB2D18 /* testVelocity.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = testVelocity.cpp; sourceTree = "<group>"; };
 		C1D4EB262577FB0F002B56E3 /* Lab08 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Lab08; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1D4EB322577FC12002B56E3 /* ground.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ground.cpp; sourceTree = "<group>"; };
 		C1D4EB332577FC12002B56E3 /* position.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = position.cpp; sourceTree = "<group>"; };
@@ -71,6 +76,9 @@
 		C1D4EB1D2577FB0F002B56E3 = {
 			isa = PBXGroup;
 			children = (
+				B205DFB027D2E0C700FB2D18 /* velocity.cpp */,
+				B205DFB227D2E0DA00FB2D18 /* testVelocity.cpp */,
+				B205DFAF27D2E0B600FB2D18 /* velocity.h */,
 				B205DFA827D2ACE600FB2D18 /* environment.cpp */,
 				B205DFAB27D2ACE700FB2D18 /* environment.h */,
 				B205DFA727D2ACE600FB2D18 /* environmentalConstants .cpp */,
@@ -169,11 +177,13 @@
 			files = (
 				C1D4EB402577FC14002B56E3 /* Lab08.cpp in Sources */,
 				C1D4EB3F2577FC14002B56E3 /* position.cpp in Sources */,
+				B205DFB327D2E0DA00FB2D18 /* testVelocity.cpp in Sources */,
 				C1D4EB3E2577FC14002B56E3 /* ground.cpp in Sources */,
 				C1D4EB422577FC14002B56E3 /* test.cpp in Sources */,
 				B205DFAD27D2ACE700FB2D18 /* environmentalConstants .cpp in Sources */,
 				B205DFAE27D2ACE700FB2D18 /* environment.cpp in Sources */,
 				C1D4EB412577FC14002B56E3 /* uiDraw.cpp in Sources */,
+				B205DFB127D2E0C700FB2D18 /* velocity.cpp in Sources */,
 				C1D4EB432577FC14002B56E3 /* uiInteract.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

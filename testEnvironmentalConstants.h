@@ -30,16 +30,11 @@ public:
 		test_upper_bounds_3();
 		test_upper_bounds_4();
 		test_upper_bounds_5();
-
-
 	}
 
 	/*****************************************************************
 	* All Test Case Go Below Here
 	*****************************************************************/
-
-
-
 	//Testing the testing system case 1
 	void get_zero_alt()
 	{

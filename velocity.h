@@ -5,8 +5,48 @@
 //  Created by Sulav Dahal on 3/4/22.
 //
 
-#ifndef velocity_h
-#define velocity_h
+#pragma once
+
+#include <iostream>
+
+/*********************************************
+ * Velocity
+ *
+ *********************************************/
 
 
-#endif /* velocity_h */
+class Velocity
+{
+public:
+    Velocity() : dx(0.0), dy(0.0) {}
+    Velocity(double dx, double dy);
+    
+    // getters
+    double getDx() const {return dx;}
+    
+    double getDy() const {return dy;}
+    
+    // Setters
+    
+    void setDx(double dx)
+    {
+        this->dx = dx;
+    }
+    
+    void  setDy(double dy)
+    {
+        this-> dy = dy;
+    }
+    
+    void addDx(double addDx) {
+        setDx(getDx() + addDx);
+    }
+    
+    void addDY(double addDy)
+    {
+        setDy(getDy() + addDy);
+    }
+private:
+    double dx;
+    double dy;
+};
