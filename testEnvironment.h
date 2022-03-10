@@ -46,7 +46,7 @@ public:
         assert(value == true);
         
         // teardown
-        delete& envInstance;
+
     
     }
     
@@ -68,7 +68,7 @@ public:
         
         // teardown
         
-        delete& envInstance;
+        
     }
     
     
@@ -88,8 +88,7 @@ public:
         assert(value == true);
         
         // teardown
-        
-        delete& envInstance;
+
     }
     
     void test_forward_one_side()
@@ -108,8 +107,7 @@ public:
         assert(value == true);
         
         // teardown
-        
-        delete& envInstance;
+
     }
     
     void test_forward_other_side()
@@ -128,8 +126,7 @@ public:
         assert(value == true);
         
         // teardown
-        
-        delete& envInstance;
+
     }
     
     void test_backward_one_side()
@@ -148,8 +145,7 @@ public:
         assert(value == true);
         
         // teardown
-        
-        delete& envInstance;
+
     }
     
     void test_backward_other_side()
@@ -168,8 +164,6 @@ public:
         assert(value == true);
         
         // teardown
-        
-        delete& envInstance;
     }
     
 
