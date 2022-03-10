@@ -17,17 +17,20 @@ public:
 	{
 		test_lower_bounds_0();
 		test_lower_bounds_1();
-		//test_lower_bounds_2();
-		//test_lower_bounds_3();
-		//test_lower_bounds_4();
+		test_lower_bounds_2();
+		test_lower_bounds_3();
+		test_lower_bounds_4();
 		test_lower_bounds_5();
 
-		//test_upper_bounds_0();
-		//test_upper_bounds_1();
-		//test_upper_bounds_2();
-		//test_upper_bounds_3();
-		//test_upper_bounds_4();
-		//test_upper_bounds_5();
+		test_upper_bounds_0();
+		test_upper_bounds_1();
+		test_upper_bounds_2();
+		test_upper_bounds_3();
+		test_upper_bounds_4();
+		test_upper_bounds_5();
+		test_upper_bounds_6();
+		test_upper_bounds_7();
+		test_upper_bounds_8();
 	}
 
 	/*****************************************************************
@@ -174,9 +177,9 @@ public:
 		// Set up
 		EnvironmentalConstants instance;
 		vector<double> functionOutput{};
-		vector<double> desiredOuput{ 2000,2010 };
-		double inputValue = 201;
-		vector<vector<double>> inputTable{ {0,0}, {200,300} , {2000,2010} };
+		vector<double> desiredOuput{ 200,300 };
+		double inputValue = 205;
+		vector<vector<double>> inputTable{ {0,0}, {80,213}, {90,303}, {100,213}, {150,250},       {200,300}, {3000,3603} };
 		bool value = false;
 
 
@@ -192,6 +195,8 @@ public:
 		////delete& instance
 
 	}
+
+
 
 
 
@@ -327,10 +332,11 @@ public:
 		// Set up
 		EnvironmentalConstants instance;
 		vector<double> functionOutput{};
-		vector<double> desiredOuput{ 0,0 };
-		double inputValue = 0;
-		vector<vector<double>> inputTable{ {0,0}, {1,1}, {2,2} };
+		vector<double> desiredOuput{ 150,250 };
+		double inputValue = 120;
+		vector<vector<double>> inputTable{ {0,0}, {80,213}, {90,303}, {100,213}, {150,250}, {200,300}, {3000,3603} };
 		bool value = false;
+
 
 		// Exercise
 		functionOutput = instance.findUpperBound(inputValue, inputTable);
@@ -341,8 +347,83 @@ public:
 		assert(value == true);
 
 		//Teardown
-		//delete& instance
+		////delete& instance
 
 	}
 
+	//Test upper bound for data table
+	void test_upper_bounds_6()
+	{
+		// Set up
+		EnvironmentalConstants instance;
+		vector<double> functionOutput{};
+		vector<double> desiredOuput{ 90,303 };
+		double inputValue = 21;
+		vector<vector<double>> inputTable{ {0,0}, {20,213}, {90, 303}, {100,213} };
+		bool value = false;
+
+
+		// Exercise
+		functionOutput = instance.findUpperBound(inputValue, inputTable);
+		if (functionOutput == desiredOuput)
+			value = true;
+
+		// verify
+		assert(value == true);
+
+		//Teardown
+		////delete& instance
+
+	}
+
+	//Test upper bound for data table
+	void test_upper_bounds_7()
+	{
+		// Set up
+		EnvironmentalConstants instance;
+		vector<double> functionOutput{};
+		vector<double> desiredOuput{ 0,0 };
+		double inputValue = 0;
+		vector<vector<double>> inputTable{ {0,0}, {20,213}};
+		bool value = false;
+
+
+		// Exercise
+		functionOutput = instance.findUpperBound(inputValue, inputTable);
+		if (functionOutput == desiredOuput)
+			value = true;
+
+		// verify
+		assert(value == true);
+
+		//Teardown
+		////delete& instance
+
+	}
+
+
+	//Test upper bound for data table
+	void test_upper_bounds_8()
+	{
+		// Set up
+		EnvironmentalConstants instance;
+		vector<double> functionOutput{};
+		vector<double> desiredOuput{ 90,303 };
+		double inputValue = 90;
+		vector<vector<double>> inputTable{ {0,0}, {20,213}, {90, 303}};
+		bool value = false;
+
+
+		// Exercise
+		functionOutput = instance.findUpperBound(inputValue, inputTable);
+		if (functionOutput == desiredOuput)
+			value = true;
+
+		// verify
+		assert(value == true);
+
+		//Teardown
+		////delete& instance
+
+	}
 };

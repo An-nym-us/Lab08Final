@@ -14,8 +14,7 @@ class EnvironmentalConstants
 
 
 public:
-	//Testing the testing system case 1
-	int error_checking_1(int data);
+
 	vector<double> findLowerBound(double inputValue, vector<vector<double>>);
 
 	vector<double> findUpperBound(double inputValue, vector<vector<double>>);
