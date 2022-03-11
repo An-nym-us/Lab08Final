@@ -15,7 +15,7 @@ public:
 
 
 
-	double getDragCoefficientAtAltitude(double mach);
+	double getDragCoefficientAtMach(double mach);
 	double getDensityAtAltitude(double altitude);
 	double getGravityAtAltitude(double altitude);
 	double getSpeedOfSoundAtAltitude(double altitude);

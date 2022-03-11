@@ -151,9 +151,31 @@ double EnvironmentalConstants::interpolation(vector<double> lowerBounds, vector<
 }
 
 
-
+/*****************************************************************
+*
+*
+*****************************************************************/
 double EnvironmentalConstants::getDensityAtAltitude(double altitude)
 {
 	return interpolation( findLowerBound(altitude, altitudeAirDensityDataTable), findUpperBound(altitude, altitudeAirDensityDataTable), altitude );
 }
 
+
+/*****************************************************************
+*
+*
+*****************************************************************/
+double EnvironmentalConstants::getDragCoefficientAtMach(double mach)
+{
+	return interpolation(findLowerBound(mach, machDragCoeffiecientDataTable), findUpperBound(mach, machDragCoeffiecientDataTable), mach);
+}
+
+
+/*****************************************************************
+*
+*
+*****************************************************************/
+double EnvironmentalConstants::getSpeedOfSoundAtAltitude(double altitude) 
+{
+	return interpolation(findLowerBound(altitude, altitudeSpeedOfSoundDataTable), findUpperBound(altitude, altitudeSpeedOfSoundDataTable), altitude);
+}
