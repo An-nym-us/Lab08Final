@@ -15,6 +15,7 @@ class TestEnvironmentalConstants
 public:
 	void run()
 	{
+		// test find lower bounds function
 		test_lower_bounds_0();
 		test_lower_bounds_1();
 		test_lower_bounds_2();
@@ -22,6 +23,8 @@ public:
 		test_lower_bounds_4();
 		test_lower_bounds_5();
 
+
+		// test find upper bounds function
 		test_upper_bounds_0();
 		test_upper_bounds_1();
 		test_upper_bounds_2();
@@ -31,6 +34,26 @@ public:
 		test_upper_bounds_6();
 		test_upper_bounds_7();
 		test_upper_bounds_8();
+
+
+		// double based linear interpolation testing function overloading
+		test_same_point();
+		test_middle_x_change();
+		test_middle_both_change();
+		test_forward_one_side();
+		test_forward_other_side();
+		test_backward_one_side();
+		test_backward_other_side();
+
+
+		// vector based linear interpolation testing function overloading
+		test_same_point_vector();
+		test_middle_x_change_vector();
+		test_middle_both_change_vector();
+		test_forward_one_side_vector();
+		test_forward_other_side_vector();
+		test_backward_one_side_vector();
+		test_backward_other_side_vector();
 	}
 
 	/*****************************************************************
@@ -38,11 +61,6 @@ public:
 	*****************************************************************/
 
 
-
-
-	/*****************************************************************
-	* All Test Cases for lower bounds method.
-	*****************************************************************/
 
 
 	//Test Lowest bound for data table
@@ -199,12 +217,9 @@ public:
 
 
 
-
-
 	/*****************************************************************
 	* All Test Cases for Upper bounds method.
 	*****************************************************************/
-
 
 	//Test upper bound for data table
 	void test_upper_bounds_0()
@@ -401,7 +416,6 @@ public:
 
 	}
 
-
 	//Test upper bound for data table
 	void test_upper_bounds_8()
 	{
@@ -425,5 +439,282 @@ public:
 		//Teardown
 		////delete& instance
 
+	}
+
+
+
+
+	/*****************************************************************
+	* Double Linear Interpolation Testing (function overloading)
+	*****************************************************************/
+
+	void test_same_point()
+	{
+		// set up
+		EnvironmentalConstants envInstance;
+
+		bool value = false;
+		// exercise
+		if (envInstance.interpolation(0.0, 0.0, 0.0, 0.0, 0.0) == 0.0)
+			value = true;
+
+		// verify
+		assert(value == true);
+
+		// teardown
+
+
+	}
+
+	void test_middle_x_change()
+	{
+		// set up
+
+		EnvironmentalConstants envInstance;
+
+		bool value = false;
+
+		// exercise
+
+		if (envInstance.interpolation(0.0, 0.0, 2.0, 0.0, 1.00) == 0.00)
+			value = true;
+
+		// verify
+		assert(value == true);
+
+		// teardown
+
+
+	}
+
+	void test_middle_both_change()
+	{
+		// setup
+
+		EnvironmentalConstants envInstance;
+		bool value = false;
+
+		// exercise
+
+		if (envInstance.interpolation(0.0, 0.0, 2.0, 2.0, 1.00) == 1.00)
+			value = true;
+
+		// verify
+		assert(value == true);
+
+		// teardown
+
+	}
+
+	void test_forward_one_side()
+	{
+		// setup
+
+		EnvironmentalConstants envInstance;
+		bool value = false;
+
+		// exercise
+
+		if (envInstance.interpolation(1.0, 2.0, 2.0, 3.0, 1.25) == 2.25)
+			value = true;
+
+		// verify
+		assert(value == true);
+
+		// teardown
+
+	}
+
+	void test_forward_other_side()
+	{
+		// setup
+
+		EnvironmentalConstants envInstance;
+		bool value = false;
+
+		// exercise
+
+		if (envInstance.interpolation(1.0, 2.0, 2.0, 3.0, 1.75) == 2.75)
+			value = true;
+
+		// verify
+		assert(value == true);
+
+		// teardown
+
+	}
+
+	void test_backward_one_side()
+	{
+		// setup
+
+		EnvironmentalConstants envInstance;
+		bool value = false;
+
+		// exercise
+
+		if (envInstance.interpolation(2.0, 2.0, 1.0, 3.0, 1.50) == 2.50)
+			value = true;
+
+		// verify
+		assert(value == true);
+
+		// teardown
+
+	}
+
+	void test_backward_other_side()
+	{
+		// setup
+
+		EnvironmentalConstants envInstance;
+		bool value = false;
+
+		// exercise
+
+		if (envInstance.interpolation(2.0, 2.0, 1.0, 3.0, 1.75) == 2.25)
+			value = true;
+
+		// verify
+		assert(value == true);
+
+		// teardown
+	}
+
+
+	/*****************************************************************
+	* Vector Linear Interpolation Testing (function overloading)
+	*****************************************************************/
+
+	void test_same_point_vector()
+	{
+		// set up
+		EnvironmentalConstants envInstance;
+
+		bool value = false;
+		// exercise
+		if (envInstance.interpolation({ 0.0, 0.0 }, { 0.0, 0.0 }, 0.0) == 0.0)
+			value = true;
+
+		// verify
+		assert(value == true);
+
+		// teardown
+
+	}
+
+	void test_middle_x_change_vector()
+	{
+		// set up
+
+		EnvironmentalConstants envInstance;
+
+		bool value = false;
+
+		// exercise
+
+		if (envInstance.interpolation({ 0.0, 0.0 }, { 2.0, 0.0 }, 1.00) == 0.00)
+			value = true;
+
+		// verify
+		assert(value == true);
+
+		// teardown
+
+
+	}
+
+	void test_middle_both_change_vector()
+	{
+		// setup
+
+		EnvironmentalConstants envInstance;
+		bool value = false;
+
+		// exercise
+
+		if (envInstance.interpolation({ 0.0, 0.0 }, { 2.0, 2.0 }, 1.00) == 1.00)
+			value = true;
+
+		// verify
+		assert(value == true);
+
+		// teardown
+
+	}
+
+	void test_forward_one_side_vector()
+	{
+		// setup
+
+		EnvironmentalConstants envInstance;
+		bool value = false;
+
+		// exercise
+
+		if (envInstance.interpolation({ 1.0, 2.0 }, { 2.0, 3.0 }, 1.25) == 2.25)
+			value = true;
+
+		// verify
+		assert(value == true);
+
+		// teardown
+
+	}
+
+	void test_forward_other_side_vector()
+	{
+		// setup
+
+		EnvironmentalConstants envInstance;
+		bool value = false;
+
+		// exercise
+
+		if (envInstance.interpolation({ 1.0, 2.0 }, { 2.0, 3.0 }, 1.75) == 2.75)
+			value = true;
+
+		// verify
+		assert(value == true);
+
+		// teardown
+
+	}
+
+	void test_backward_one_side_vector()
+	{
+		// setup
+
+		EnvironmentalConstants envInstance;
+		bool value = false;
+
+		// exercise
+
+		if (envInstance.interpolation({ 2.0, 2.0 }, { 1.0, 3.0 }, 1.50) == 2.50)
+			value = true;
+
+		// verify
+		assert(value == true);
+
+		// teardown
+
+	}
+
+	void test_backward_other_side_vector()
+	{
+		// setup
+
+		EnvironmentalConstants envInstance;
+		bool value = false;
+
+		// exercise
+
+		if (envInstance.interpolation({ 2.0, 2.0 }, { 1.0, 3.0 }, 1.75) == 2.25)
+			value = true;
+
+		// verify
+		assert(value == true);
+
+		// teardown
 	}
 };

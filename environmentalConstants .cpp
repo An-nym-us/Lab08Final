@@ -1,6 +1,6 @@
 #include "environmentalConstants.h"
 #include <iostream>
-#include <iterator>
+
 
 
 using namespace std;
@@ -11,7 +11,6 @@ using namespace std;
 *****************************************************************************************/
 vector<double> EnvironmentalConstants::findLowerBound(double inputValue, vector<vector<double>> dataTable)
 {
-	
 	vector<vector<double>> splitState = dataTable;
 	
 
@@ -64,7 +63,6 @@ vector<double> EnvironmentalConstants::findLowerBound(double inputValue, vector<
 *****************************************************************************************/
 vector<double> EnvironmentalConstants::findUpperBound(double inputValue, vector<vector<double>> dataTable)
 {
-
 	vector<vector<double>> splitState = dataTable;
 
 
@@ -99,7 +97,6 @@ vector<double> EnvironmentalConstants::findUpperBound(double inputValue, vector<
 
 				if (positiveCheckState > 0 && negivateCheckState < 0)
 				{
-					cout << "PREVIOUS Index " << splitState.at(i + 1).at(0) << " AND " << splitState.at(i + 1).at(1) << endl;
 					return { splitState.at(i + 1).at(0), splitState.at(i + 1).at(1) };
 				}
 			}
@@ -111,3 +108,52 @@ vector<double> EnvironmentalConstants::findUpperBound(double inputValue, vector<
 
 
 }
+
+/*****************************************************************
+*
+*
+*****************************************************************/
+double EnvironmentalConstants::interpolation(double d0, double r0, double d1, double r1, double d)
+{
+	double range = r0 + (r1 - r0) * (d - d0) / (d1 - d0);
+
+	// checks if the value providedd by the lower bounds, upper boudnds and target value are all the same
+	// if the are the same, return the exact index of the lower bounds, or upper bounds if wanted.
+	if ((d0 == d) && (d1 == d))
+		return r0;
+
+
+	if (!std::isnan(range))
+		return range;
+	else
+		return 0.0;
+}
+
+
+/*****************************************************************
+*
+*
+*****************************************************************/
+double EnvironmentalConstants::interpolation(vector<double> lowerBounds, vector<double> upperBounds, double targetValue)
+{
+	double range = lowerBounds.at(1) + (targetValue - lowerBounds.at(0)) * ((upperBounds.at(1) - lowerBounds.at(1)) / (upperBounds.at(0) - lowerBounds.at(0)));
+
+	// checks if the value providedd by the lower bounds, upper boudnds and target value are all the same
+	// if the are the same, return the exact index of the lower bounds, or upper bounds if wanted.
+	if ((lowerBounds.at(0) == targetValue) && (upperBounds.at(0) == targetValue))
+		return lowerBounds.at(1);
+
+
+	if (!std::isnan(range)) 
+		return range;
+	else
+		return 0.0;
+}
+
+
+
+double EnvironmentalConstants::getDensityAtAltitude(double altitude)
+{
+	return interpolation( findLowerBound(altitude, altitudeAirDensityDataTable), findUpperBound(altitude, altitudeAirDensityDataTable), altitude );
+}
+
