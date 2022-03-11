@@ -179,3 +179,18 @@ double EnvironmentalConstants::getSpeedOfSoundAtAltitude(double altitude)
 {
 	return interpolation(findLowerBound(altitude, altitudeSpeedOfSoundDataTable), findUpperBound(altitude, altitudeSpeedOfSoundDataTable), altitude);
 }
+
+
+
+/*****************************************************************
+*
+*
+*****************************************************************/
+double EnvironmentalConstants::getGravityAtAltitude(double altitude)
+{
+	return -(0.0000030799999999999985 * altitude) + 9.807;
+}
+
+
+
+

@@ -19,7 +19,7 @@ public:
 	double getDensityAtAltitude(double altitude);
 	double getGravityAtAltitude(double altitude);
 	double getSpeedOfSoundAtAltitude(double altitude);
-	double getAccelerationOnSheelDueToDrag(double altitude, double mass, double velocity, double surfaceArea);
+
 
 
 
