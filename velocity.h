@@ -18,6 +18,10 @@
 class Velocity
 {
 public:
+
+    friend class testVelocity;
+
+
     Velocity() : dx(0.0), dy(0.0) {}
     Velocity(double dx, double dy);
     
