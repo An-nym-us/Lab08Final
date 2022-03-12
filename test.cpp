@@ -33,7 +33,7 @@ void testRunner()
 
 
 	//TestPosition().run();
-	//TestEnvironment().run();
+	TestEnvironment().run();
 	TestEnvironmentalConstants().run();
     //TestVelocity().run();
     

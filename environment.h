@@ -16,7 +16,9 @@ class Environment
 public:	
 
 	double getDragAccelerationAtPosition(Position &position); // Returned in M/S^2 (acceleration)
-    
+	void applyGravity(Position* position);
+	void applyIniteria(Position* position);
+	void applyDrag(Position* position);
 
 
 

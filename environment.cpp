@@ -30,4 +30,28 @@ double Environment::getForceOnSheelDueToDrag(double altitude, double mass, doubl
 double Environment::getDragAccelerationAtPosition(Position& position)
 {
 	return -1;
+
+
+}
+
+void Environment::applyGravity(Position* position)
+{
+
+	Position storestate; 
+	//cout << EnvironmentalConstants().getGravityAtAltitude(position->getMetersY()) << endl;
+	storestate.setMetersY(EnvironmentalConstants().getGravityAtAltitude(position->getMetersY()));
+	position->addMetersY(storestate.getMetersY());
+	
+}
+
+void Environment::applyIniteria(Position* position)
+{
+
+
+}
+
+void Environment::applyDrag(Position* position)
+{
+
+
 }
