@@ -30,9 +30,7 @@ int main()
 void testRunner()
 {
 
-
-
-	//TestPosition().run();
+	TestPosition().run();
 	TestEnvironment().run();
 	TestEnvironmentalConstants().run();
     //TestVelocity().run();

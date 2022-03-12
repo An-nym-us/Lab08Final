@@ -68,22 +68,16 @@ public:
 	{
 		// Set up
 		EnvironmentalConstants instance;
-		vector<double> functionOutput{};
 		vector<double> desiredOuput{ 1,1 };
 		double inputValue = 1;
 		vector<vector<double>> inputTable{ {0,0}, {1,1}, {2,2} };
-		bool value = false;
 
 		// Exercise
-		functionOutput = instance.findLowerBound(inputValue, inputTable);
-		if (functionOutput == desiredOuput)
-			value = true;
-		
+
 		// verify
-		assert(value == true);
+		assert(instance.findLowerBound(inputValue, inputTable) == desiredOuput);
 
 		//Teardown
-		////delete& instance
 
 	}
 
@@ -95,22 +89,16 @@ public:
 	{
 		// Set up
 		EnvironmentalConstants instance;
-		vector<double> functionOutput{};
 		vector<double> desiredOuput{ 3,3 };
 		double inputValue = 3;
 		vector<vector<double>> inputTable{ {1,1}, {2,2}, {3,3} };
-		bool value = false;
 
 		// Exercise
-		functionOutput = instance.findLowerBound(inputValue, inputTable);
-		if (functionOutput == desiredOuput)
-			value = true;
 
 		// verify
-		assert(value == true);
+		assert(instance.findLowerBound(inputValue, inputTable) == desiredOuput);
 
 		//Teardown
-		////delete& instance
 
 	}
 
@@ -119,23 +107,15 @@ public:
 	{
 		// Set up
 		EnvironmentalConstants instance;
-		vector<double> functionOutput{};
 		vector<double> desiredOuput{ 1,1 };
 		double inputValue = 1.5;
 		vector<vector<double>> inputTable{ {0,0}, {1,1} , {2,2} };
-		bool value = false;
-
-
 		// Exercise
-		functionOutput = instance.findLowerBound(inputValue, inputTable);
-		if (functionOutput == desiredOuput)
-			value = true;
 
 		// verify
-		assert(value == true);
+		assert(instance.findLowerBound(inputValue, inputTable) == desiredOuput);
 
 		//Teardown
-		////delete& instance
 
 	}
 
@@ -144,23 +124,17 @@ public:
 	{
 		// Set up
 		EnvironmentalConstants instance;
-		vector<double> functionOutput{};
 		vector<double> desiredOuput{ 1,1 };
 		double inputValue = 1.9;
 		vector<vector<double>> inputTable{ {0,0}, {1,1} , {2,2} };
-		bool value = false;
-
 
 		// Exercise
-		functionOutput = instance.findLowerBound(inputValue, inputTable);
-		if (functionOutput == desiredOuput)
-			value = true;
 
 		// verify
-		assert(value == true);
+		assert(instance.findLowerBound(inputValue, inputTable) == desiredOuput);
 
 		//Teardown
-		////delete& instance
+
 
 	}
 
@@ -169,23 +143,16 @@ public:
 	{
 		// Set up
 		EnvironmentalConstants instance;
-		vector<double> functionOutput{};
 		vector<double> desiredOuput{ 1,1 };
 		double inputValue = 1.2;
 		vector<vector<double>> inputTable{ {0,0}, {1,1} , {2,2} };
-		bool value = false;
-
 
 		// Exercise
-		functionOutput = instance.findLowerBound(inputValue, inputTable);
-		if (functionOutput == desiredOuput)
-			value = true;
 
 		// verify
-		assert(value == true);
+		assert(instance.findLowerBound(inputValue, inputTable) == desiredOuput);
 
 		//Teardown
-		////delete& instance
 
 	}
 
@@ -194,23 +161,17 @@ public:
 	{
 		// Set up
 		EnvironmentalConstants instance;
-		vector<double> functionOutput{};
 		vector<double> desiredOuput{ 200,300 };
 		double inputValue = 205;
 		vector<vector<double>> inputTable{ {0,0}, {80,213}, {90,303}, {100,213}, {150,250},       {200,300}, {3000,3603} };
-		bool value = false;
-
 
 		// Exercise
-		functionOutput = instance.findLowerBound(inputValue, inputTable);
-		if (functionOutput == desiredOuput)
-			value = true;
-
+		// 
 		// verify
-		assert(value == true);
+		assert(instance.findLowerBound(inputValue, inputTable) == desiredOuput);
 
 		//Teardown
-		////delete& instance
+
 
 	}
 
@@ -226,22 +187,16 @@ public:
 	{
 		// Set up
 		EnvironmentalConstants instance;
-		vector<double> functionOutput{};
 		vector<double> desiredOuput{ 1,1 };
 		double inputValue = 1;
 		vector<vector<double>> inputTable{ {0,0}, {1,1}, {2,2} };
-		bool value = false;
 
 		// Exercise
-		functionOutput = instance.findUpperBound(inputValue, inputTable);
-		if (functionOutput == desiredOuput)
-			value = true;
 
 		// verify
-		assert(value == true);
+		assert(instance.findUpperBound(inputValue, inputTable) == desiredOuput);
 
 		//Teardown
-		//delete& instance
 
 	}
 
@@ -250,22 +205,18 @@ public:
 	{
 		// Set up
 		EnvironmentalConstants instance;
-		vector<double> functionOutput{};
 		vector<double> desiredOuput{ 2,2 };
 		double inputValue = 2;
 		vector<vector<double>> inputTable{ {0,0}, {1,1}, {2,2} };
-		bool value = false;
+
 
 		// Exercise
-		functionOutput = instance.findUpperBound(inputValue, inputTable);
-		if (functionOutput == desiredOuput)
-			value = true;
 
 		// verify
-		assert(value == true);
+		assert(instance.findUpperBound(inputValue, inputTable) == desiredOuput);
 
 		//Teardown
-		//delete& instance
+
 
 	}
 
@@ -274,22 +225,16 @@ public:
 	{
 		// Set up
 		EnvironmentalConstants instance;
-		vector<double> functionOutput{};
 		vector<double> desiredOuput{ 2,2 };
 		double inputValue = 1.5;
 		vector<vector<double>> inputTable{ {0,0}, {1,1}, {2,2} };
-		bool value = false;
 
 		// Exercise
-		functionOutput = instance.findUpperBound(inputValue, inputTable);
-		if (functionOutput == desiredOuput)
-			value = true;
 
 		// verify
-		assert(value == true);
+		assert(instance.findUpperBound(inputValue, inputTable) == desiredOuput);
 
 		//Teardown
-		//delete& instance
 
 	}
 
@@ -298,22 +243,16 @@ public:
 	{
 		// Set up
 		EnvironmentalConstants instance;
-		vector<double> functionOutput{};
 		vector<double> desiredOuput{ 2,2 };
 		double inputValue = 1.6;
 		vector<vector<double>> inputTable{ {0,0}, {1,1}, {2,2} };
-		bool value = false;
 
 		// Exercise
-		functionOutput = instance.findUpperBound(inputValue, inputTable);
-		if (functionOutput == desiredOuput)
-			value = true;
-
+		// 
 		// verify
-		assert(value == true);
+		assert(instance.findUpperBound(inputValue, inputTable) == desiredOuput);
 
 		//Teardown
-		//delete& instance
 
 	}
 
@@ -322,22 +261,16 @@ public:
 	{
 		// Set up
 		EnvironmentalConstants instance;
-		vector<double> functionOutput{};
 		vector<double> desiredOuput{ 2,2 };
 		double inputValue = 1.4;
 		vector<vector<double>> inputTable{ {0,0}, {1,1}, {2,2} };
-		bool value = false;
 
 		// Exercise
-		functionOutput = instance.findUpperBound(inputValue, inputTable);
-		if (functionOutput == desiredOuput)
-			value = true;
 
 		// verify
-		assert(value == true);
+		assert(instance.findUpperBound(inputValue, inputTable) == desiredOuput);
 
 		//Teardown
-		//delete& instance
 
 	}
 
@@ -346,23 +279,17 @@ public:
 	{
 		// Set up
 		EnvironmentalConstants instance;
-		vector<double> functionOutput{};
 		vector<double> desiredOuput{ 150,250 };
 		double inputValue = 120;
 		vector<vector<double>> inputTable{ {0,0}, {80,213}, {90,303}, {100,213}, {150,250}, {200,300}, {3000,3603} };
-		bool value = false;
 
 
 		// Exercise
-		functionOutput = instance.findUpperBound(inputValue, inputTable);
-		if (functionOutput == desiredOuput)
-			value = true;
 
 		// verify
-		assert(value == true);
+		assert(instance.findUpperBound(inputValue, inputTable) == desiredOuput);
 
 		//Teardown
-		////delete& instance
 
 	}
 
@@ -371,23 +298,15 @@ public:
 	{
 		// Set up
 		EnvironmentalConstants instance;
-		vector<double> functionOutput{};
 		vector<double> desiredOuput{ 90,303 };
 		double inputValue = 21;
 		vector<vector<double>> inputTable{ {0,0}, {20,213}, {90, 303}, {100,213} };
-		bool value = false;
-
-
 		// Exercise
-		functionOutput = instance.findUpperBound(inputValue, inputTable);
-		if (functionOutput == desiredOuput)
-			value = true;
 
 		// verify
-		assert(value == true);
+		assert(instance.findUpperBound(inputValue, inputTable) == desiredOuput);
 
 		//Teardown
-		////delete& instance
 
 	}
 
@@ -396,23 +315,15 @@ public:
 	{
 		// Set up
 		EnvironmentalConstants instance;
-		vector<double> functionOutput{};
 		vector<double> desiredOuput{ 0,0 };
 		double inputValue = 0;
 		vector<vector<double>> inputTable{ {0,0}, {20,213}};
-		bool value = false;
-
-
 		// Exercise
-		functionOutput = instance.findUpperBound(inputValue, inputTable);
-		if (functionOutput == desiredOuput)
-			value = true;
 
 		// verify
-		assert(value == true);
+		assert(instance.findUpperBound(inputValue, inputTable) == desiredOuput);
 
 		//Teardown
-		////delete& instance
 
 	}
 
@@ -421,23 +332,17 @@ public:
 	{
 		// Set up
 		EnvironmentalConstants instance;
-		vector<double> functionOutput{};
 		vector<double> desiredOuput{ 90,303 };
 		double inputValue = 90;
 		vector<vector<double>> inputTable{ {0,0}, {20,213}, {90, 303}};
-		bool value = false;
 
 
 		// Exercise
-		functionOutput = instance.findUpperBound(inputValue, inputTable);
-		if (functionOutput == desiredOuput)
-			value = true;
 
 		// verify
-		assert(value == true);
+		assert(instance.findUpperBound(inputValue, inputTable) == desiredOuput);
 
 		//Teardown
-		////delete& instance
 
 	}
 
@@ -591,13 +496,10 @@ public:
 		// set up
 		EnvironmentalConstants envInstance;
 
-		bool value = false;
 		// exercise
-		if (envInstance.interpolation({ 0.0, 0.0 }, { 0.0, 0.0 }, 0.0) == 0.0)
-			value = true;
 
 		// verify
-		assert(value == true);
+		assert(envInstance.interpolation({ 0.0, 0.0 }, { 0.0, 0.0 }, 0.0) == 0.0);
 
 		// teardown
 
@@ -606,18 +508,12 @@ public:
 	void test_middle_x_change_vector()
 	{
 		// set up
-
 		EnvironmentalConstants envInstance;
-
-		bool value = false;
 
 		// exercise
 
-		if (envInstance.interpolation({ 0.0, 0.0 }, { 2.0, 0.0 }, 1.00) == 0.00)
-			value = true;
-
 		// verify
-		assert(value == true);
+		assert(envInstance.interpolation({ 0.0, 0.0 }, { 2.0, 0.0 }, 1.00) == 0.00);
 
 		// teardown
 
@@ -627,17 +523,12 @@ public:
 	void test_middle_both_change_vector()
 	{
 		// setup
-
 		EnvironmentalConstants envInstance;
-		bool value = false;
 
 		// exercise
 
-		if (envInstance.interpolation({ 0.0, 0.0 }, { 2.0, 2.0 }, 1.00) == 1.00)
-			value = true;
-
 		// verify
-		assert(value == true);
+		assert(envInstance.interpolation({ 0.0, 0.0 }, { 2.0, 2.0 }, 1.00) == 1.00);
 
 		// teardown
 
@@ -648,15 +539,11 @@ public:
 		// setup
 
 		EnvironmentalConstants envInstance;
-		bool value = false;
 
 		// exercise
 
-		if (envInstance.interpolation({ 1.0, 2.0 }, { 2.0, 3.0 }, 1.25) == 2.25)
-			value = true;
-
 		// verify
-		assert(value == true);
+		assert(envInstance.interpolation({ 1.0, 2.0 }, { 2.0, 3.0 }, 1.25) == 2.25);
 
 		// teardown
 
@@ -667,15 +554,11 @@ public:
 		// setup
 
 		EnvironmentalConstants envInstance;
-		bool value = false;
 
 		// exercise
 
-		if (envInstance.interpolation({ 1.0, 2.0 }, { 2.0, 3.0 }, 1.75) == 2.75)
-			value = true;
-
 		// verify
-		assert(value == true);
+		assert(envInstance.interpolation({ 1.0, 2.0 }, { 2.0, 3.0 }, 1.75) == 2.75);
 
 		// teardown
 
@@ -686,15 +569,11 @@ public:
 		// setup
 
 		EnvironmentalConstants envInstance;
-		bool value = false;
 
 		// exercise
 
-		if (envInstance.interpolation({ 2.0, 2.0 }, { 1.0, 3.0 }, 1.50) == 2.50)
-			value = true;
-
 		// verify
-		assert(value == true);
+		assert(envInstance.interpolation({ 2.0, 2.0 }, { 1.0, 3.0 }, 1.50) == 2.50);
 
 		// teardown
 
@@ -703,17 +582,12 @@ public:
 	void test_backward_other_side_vector()
 	{
 		// setup
-
 		EnvironmentalConstants envInstance;
-		bool value = false;
 
 		// exercise
-
-		if (envInstance.interpolation({ 2.0, 2.0 }, { 1.0, 3.0 }, 1.75) == 2.25)
-			value = true;
-
+		
 		// verify
-		assert(value == true);
+		assert(envInstance.interpolation({ 2.0, 2.0 }, { 1.0, 3.0 }, 1.75) == 2.25);
 
 		// teardown
 	}

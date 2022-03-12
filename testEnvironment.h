@@ -45,16 +45,13 @@ public:
 		Environment instance;
 		Position* point = new Position();
 		point->setMetersY(10);
-		bool value = false;
 
 		// Exercise
 		instance.applyGravity(point);
 
-		if (closeEnough(point->getMetersY(), 0, 1))
-			value = true;
 
 		// verify
-		assert(value == true);
+		assert(closeEnough(point->getMetersY(), 0, 1));
 
 		//Teardown
 
@@ -67,15 +64,12 @@ public:
 		Environment instance;
 		Position* point = new Position();
 		point->setMetersY(100);
-		bool value = false;
 
 		// Exercise
 		instance.applyGravity(point);
-		if (closeEnough(point->getMetersY(), 90, 100))
-			value = true;
 
 		// verify
-		assert(value == true);
+		assert(closeEnough(point->getMetersY(), 90, 100));
 
 		//Teardown
 
@@ -87,15 +81,12 @@ public:
 		Environment instance;
 		Position* point = new Position();
 		point->setMetersY(1000);
-		bool value = false;
 
 		// Exercise
 		instance.applyGravity(point);
-		if (closeEnough(point->getMetersY(), 990, 1000))
-			value = true;
 
 		// verify
-		assert(value == true);
+		assert(closeEnough(point->getMetersY(), 990, 1000));
 
 		//Teardown
 
@@ -107,15 +98,12 @@ public:
 		Environment instance;
 		Position* point = new Position();
 		point->setMetersY(0);
-		bool value = false;
 
 		// Exercise
 		instance.applyGravity(point);
-		if (closeEnough(point->getMetersY(), -10, 0))
-			value = true;
 
 		// verify
-		assert(value == true);
+		assert(closeEnough(point->getMetersY(), -10, 0));
 
 		//Teardown
 
