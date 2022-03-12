@@ -1,6 +1,6 @@
 #include "environmentalConstants.h"
 #include <iostream>
-
+#include <math.h>
 
 
 using namespace std;
@@ -123,7 +123,7 @@ double EnvironmentalConstants::interpolation(double d0, double r0, double d1, do
 		return r0;
 
 
-	if (!std::isnan(range))
+	if (!isnan(range))
 		return range;
 	else
 		return 0.0;
@@ -144,7 +144,7 @@ double EnvironmentalConstants::interpolation(vector<double> lowerBounds, vector<
 		return lowerBounds.at(1);
 
 
-	if (!std::isnan(range)) 
+	if (!isnan(range))
 		return range;
 	else
 		return 0.0;

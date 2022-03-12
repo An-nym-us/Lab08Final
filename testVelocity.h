@@ -28,8 +28,7 @@ public:
         assert(vel.getDx() == 0.0);
         assert(vel.getDy() == 0.0);
         
-        // TearDown
-        delete& vel;
+    
     };
     void test_Velocity_NonDefault()
     {
@@ -41,8 +40,7 @@ public:
         assert(vel.getDx() == 20);
         assert(vel.getDy() == 30);
         
-        // TearDown
-        delete& vel;
+
     };
     
     void test_Velocity_AddDx()
@@ -56,8 +54,7 @@ public:
         // verify
         assert(vel.getDx() == 8.0);
         
-        // teardown
-        delete& vel;
+    
         
         
     };
@@ -72,9 +69,7 @@ public:
         
         // verify
         assert(vel.getDy() == 24.0);
-        
-        // teadrown
-        delete& vel;
+    
         
     };
     
@@ -84,14 +79,11 @@ public:
         Velocity vel;
         
         // exercise
-        vel.setDx(15.00);
         vel.setDx(18.00);
         
         // verify
-        assert(vel.getDx() == 15.00);
         assert(vel.getDx() == 18.00);
-        // teardown
-        delete& vel;
+ 
         
         
     };
@@ -106,9 +98,7 @@ public:
         
         // verify
         assert(vel.getDy() == 18.00);
-        
-        // teardown
-        delete& vel;
+
         
     };
 };

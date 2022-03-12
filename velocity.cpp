@@ -1,6 +1,6 @@
 /***********************************************************************
  * Source File:
- *    Point : The representation of a position on the screen
+ *    Point : The representation of a velocty on the screen
  * Author:
  *         Jonathan Gunderson and Sulav Dahal
  * Summary:

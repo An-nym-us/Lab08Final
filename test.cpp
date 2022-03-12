@@ -32,10 +32,10 @@ void testRunner()
 
 
 
-	//TestPosition().run();
-	TestEnvironment().run();
-	TestEnvironmentalConstants().run();
-    //TestVelocity().run();
+//	TestPosition().run();
+//	TestEnvironment().run();
+//	TestEnvironmentalConstants().run();
+    TestVelocity().run();
     
 
 }
