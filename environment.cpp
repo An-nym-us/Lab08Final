@@ -1,7 +1,7 @@
 #include "environment.h"
 #include "environmentalConstants.h"
 #include <iostream>
-#include <math.h>  
+#include <cmath>  
 using namespace std;
 
 
