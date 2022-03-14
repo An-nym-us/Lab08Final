@@ -19,12 +19,12 @@
  * TEST RUNNER
  * Runs all the unit tests
  ****************************************************************/
-int main()
-{
-	cout << "Test Runner Started" << endl;
-	testRunner();
-	cout << "All Tests Passed!" << endl;
-}
+//int main()
+//{
+//	cout << "Test Runner Started" << endl;
+//	testRunner();
+//	cout << "All Tests Passed!" << endl;
+//}
 
 
 

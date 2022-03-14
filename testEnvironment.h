@@ -43,6 +43,7 @@ public:
 	{
 		// Set up
 		Environment instance;
+
 		Position* point = new Position();
 		point->setMetersY(10);
 
