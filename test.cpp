@@ -19,10 +19,12 @@
  * TEST RUNNER
  * Runs all the unit tests
  ****************************************************************/
-int main()
-{
-	testRunner();
-}
+//int main()
+//{
+//	cout << "Test Runner Started" << endl;
+//	testRunner();
+//	cout << "All Tests Passed!" << endl;
+//}
 
 
 
@@ -30,10 +32,11 @@ int main()
 void testRunner()
 {
 
+
 	TestPosition().run();
 	TestEnvironment().run();
 	TestEnvironmentalConstants().run();
-    //TestVelocity().run();
+    TestVelocity().run();
     
 
 }
