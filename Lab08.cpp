@@ -76,46 +76,52 @@ public:
 
         for (int i = 0; i < 20; i++)
         {
-                  {
-            
+                  {       
                      projectilePath[i].setPixelsX((double)i * 2.0);
                      projectilePath[i].setPixelsY((double)i * 2.0);
             
                      projectilePath[i].setPixelsY(ptUpperRight.getPixelsY() / 1.5);
-            
-                  }
 
+                  }
         }
     }
 // the ground
 
 
 
-    double angle;                  // angle of the howitzer 
+    double angle;
     double time;                   // amount of time since the last firing
 
 
 
 
 
-    Projectile* getProjectile() { return projectileInstance; }
-    Ground getGround() { return ground;  }
-    //Position getProjecilePath() { return projectilePath[20]; }
-    Position getptHowitzer() { return ptHowitzer;  }
-    Position getptUpperRight() { return ptUpperRight;  }
+
 
 
 
     Position  projectilePath[20];  // path of the projectile
 
+
+
+    Projectile *getProjectile() { return projectileInstance; }
+    Ground getGround() { return ground; }
+    Position getptHowitzer() { return ptHowitzer;  }
+    Position getptUpperRight() { return ptUpperRight;  }
+
+    double getLaunchAngle() { return launchAngle; }
+    void addLaunchAngle() { this->launchAngle += 0.05; }       
+    void subtractLaunchAngle() { this->launchAngle -= 0.05; }    // angle of the howitzer };
+
+
+
 private:
 
-    Projectile* projectileInstance = new Projectile();
-    //Position  projectilePath[20];  // path of the projectile
+    Projectile *projectileInstance = new Projectile();
     Position  ptHowitzer;          // location of the howitzer
     Position  ptUpperRight;        // size of the screen
     Ground ground;
-
+    double launchAngle;                  // angle of the howitzer 
 
 
 };
@@ -135,8 +141,10 @@ private:
  **************************************/
 
 
-bool startSim = true; // inilize sim outside loop.
-
+bool startSim = false; // inilize sim outside loop.
+bool tempLaunchPRohectile = false;
+double howX = 0;
+double howY = 0;
 
 void callBack(const Interface* pUI, void* p)
 {
@@ -153,8 +161,10 @@ void callBack(const Interface* pUI, void* p)
 
    // move a large amount
    if (pUI->isRight())
+       //pGameSate->addLaunchAngle();
       pGameSate->angle += 0.05;
    if (pUI->isLeft())
+       //pGameSate->subtractLaunchAngle();
       pGameSate->angle -= 0.05;
 
    // move by a little
@@ -183,34 +193,71 @@ void callBack(const Interface* pUI, void* p)
 
 
 
-   //pGameSate->getProjectile()->noDDestroy();  // As of now this works :D
+
 
    // move the projectile across the screen
+
+   pGameSate->projectilePath->setMetersY(pGameSate->getProjectile()->getCurrentLocationY());
+   pGameSate->projectilePath->setMetersX(pGameSate->getProjectile()->getCurrentLocationX());
 
 
    if (startSim == true)
    {
-       
-       
-       for (int i = 0; i < 20; i++)
-       {
-           double x = pGameSate->projectilePath->getPixelsX();
-           double y = pGameSate->projectilePath->getPixelsY();
-           x -= .5;
-           y -= .5;
+       //pGameSate->projectilePath->setPixelsX(pGameSate->getptHowitzer().getMetersX());
+       //pGameSate->projectilePath->setPixelsY(pGameSate->getptHowitzer().getMetersY());
 
-           if (x < 0)
-           {
-               x = pGameSate->getptUpperRight().getPixelsX();
-               y = pGameSate->getptUpperRight().getPixelsY();
-           }
+       howX = pGameSate->getptHowitzer().getMetersX();
+       howY = pGameSate->getptHowitzer().getMetersY();
+       cout << pGameSate->getptHowitzer().getMetersY();
 
-           pGameSate->projectilePath->setPixelsX(x);
-          // pGameSate->projectilePath->setPixelsY(y);
-       }
+       pGameSate->getProjectile()->setCurrentLocationX(howX);
+       pGameSate->getProjectile()->setCurrentLocationY(howY);
 
+
+       pGameSate->getProjectile()->applyLaunchPhysics(pGameSate->angle);
+
+       startSim = false;
+       tempLaunchPRohectile = true;
+
+
+
+       cout << "Sim has started" << endl;
    }
 
+
+
+
+
+   if (tempLaunchPRohectile == true)
+   {
+       pGameSate->getProjectile()->applyPhysics();
+       pGameSate->getProjectile()->noDDestroy();
+   }
+
+
+
+
+
+
+
+
+
+   for (int i = 0; i < 20; i++)
+   {
+       double x = pGameSate->projectilePath->getPixelsX();
+       double y = pGameSate->projectilePath->getPixelsY();
+       //x -= .5;
+       //y += .5;
+
+
+
+       if (x < 0)
+       {
+           x = pGameSate->getptUpperRight().getPixelsX();
+           y = pGameSate->getptUpperRight().getPixelsY();
+
+       }
+   }
 
 
 

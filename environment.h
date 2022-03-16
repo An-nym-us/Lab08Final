@@ -1,5 +1,6 @@
 #pragma once
 #include "position.h"
+#include "acceleration.h"
 #include <vector>
 
 
@@ -16,8 +17,8 @@ class Environment
 public:	
 
 	double getDragAccelerationAtPosition(Position &position); // Returned in M/S^2 (acceleration)
-	void applyGravity(Position* position);
-	void applyIniteria(Position* position);
+	void applyGravity(Acceleration* currentAcceleration);
+	void applyIniteria(Position& position);
 	void applyDrag(Position* position);
 
 

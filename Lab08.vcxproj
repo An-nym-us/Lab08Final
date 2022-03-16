@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="acceleration .cpp" />
     <ClCompile Include="environment.cpp" />
     <ClCompile Include="environmentalConstants .cpp" />
     <ClCompile Include="ground.cpp" />
@@ -151,6 +152,7 @@
     <ClCompile Include="velocity.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="acceleration.h" />
     <ClInclude Include="environment.h" />
     <ClInclude Include="environmentalConstants.h" />
     <ClInclude Include="ground.h" />
