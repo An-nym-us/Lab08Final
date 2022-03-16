@@ -1,10 +1,3 @@
-//
-//  velocity.h
-//  Lab08
-//
-//  Created by Sulav Dahal on 3/4/22.
-//
-
 #pragma once
 
 #include <iostream>
@@ -16,10 +9,36 @@ using namespace std;
  *********************************************/
 
 
+// Change in Position per unit Time
 class Velocity
 {
     
 public:
+    Velocity() :dx(0.0), dy(0.0);
+    double getDx()
+    {
+        return this -> dx;
+    }
+    double getDy()
+    {
+        return this -> dy;
+    }
+    
+    double getSpeed();
+    
+    void setDx(double dx)
+    {
+        this -> dx = dx;
+    }
+    
+    void setDy(double dy)
+    {
+        this -> dy = dy;
+    }
+    
+    double setSpeed();
+    
+    void addDx(double dx)
 
 
 
@@ -35,7 +54,7 @@ public:
 
     void setDx(double dx)
     {
-        this->dx = dx;
+        setDx(getDx() + dx);
     }
 
     void  setDy(double dy)
@@ -48,8 +67,11 @@ public:
     }
 
     void addDY(double addDy)
+    
+    void reverse()
     {
-        setDy(getDy() + addDy);
+        dx *= -1.0;
+        dy *= -1.0;
     }
 
 

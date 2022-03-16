@@ -1,11 +1,10 @@
 #pragma once
-#include <iostream>
 #include "position.h"
+#include <vector>
+#include "uiDraw.h"
 #include "velocity.h"
 #include "acceleration.h"
 #include "environment.h"
-
-using namespace std;
 
 class Projectile
 {
@@ -43,7 +42,29 @@ public:
 
 
 
+    Projectile();
+    void advance(double time);
+    void draw(ogstream &gout) const;
+    bool flying();
+    double getAltitude();
+    double getFlightTime();
+    double getFlightDistance();
+    double getSpeed();
+    double getCurrentTime();
+    void setMass(double mass)
+    {
+        this -> mass = mass;
+    }
+    void setRadious(double radious)
+    {
+        this -> radious = radious;
+    }
+    
 private:
+    double mass;
+    double radious;
+    vector<int> flightPath;
+}
 	double testing = 0;
 	Position currentLocation;
 
