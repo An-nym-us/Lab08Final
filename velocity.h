@@ -1,56 +1,48 @@
-//
-//  velocity.h
-//  Lab08
-//
-//  Created by Sulav Dahal on 3/4/22.
-//
-
 #pragma once
-
-#include <iostream>
-
-/*********************************************
- * Velocity
- *
- *********************************************/
-
-
+// Change in Position per unit Time
 class Velocity
 {
 public:
-
-    friend class testVelocity;
-
-
-    Velocity() : dx(0.0), dy(0.0) {}
-    Velocity(double dx, double dy);
+    Velocity() :dx(0.0), dy(0.0);
+    double getDx()
+    {
+        return this -> dx;
+    }
+    double getDy()
+    {
+        return this -> dy;
+    }
     
-    // getters
-    double getDx() const {return dx;}
-    
-    double getDy() const {return dy;}
-    
-    // Setters
+    double getSpeed();
     
     void setDx(double dx)
     {
-        this->dx = dx;
+        this -> dx = dx;
     }
     
-    void  setDy(double dy)
+    void setDy(double dy)
     {
-        this-> dy = dy;
+        this -> dy = dy;
     }
     
-    void addDx(double addDx) {
-        setDx(getDx() + addDx);
-    }
+    double setSpeed();
     
-    void addDY(double addDy)
+    void addDx(double dx)
     {
-        setDy(getDy() + addDy);
+        setDx(getDx() + dx);
+    }
+    
+    double addDy(double dy)
+    {
+        setDy(getDy() + dy);;
+    }
+    
+    void reverse()
+    {
+        dx *= -1.0;
+        dy *= -1.0;
     }
 private:
     double dx;
     double dy;
-};
+}
