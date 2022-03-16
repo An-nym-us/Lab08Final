@@ -155,6 +155,7 @@
     <ClInclude Include="acceleration.h" />
     <ClInclude Include="environment.h" />
     <ClInclude Include="environmentalConstants.h" />
+    <ClInclude Include="gameState.h" />
     <ClInclude Include="ground.h" />
     <ClInclude Include="position.h" />
     <ClInclude Include="projectile.h" />

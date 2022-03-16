@@ -7,7 +7,7 @@
 
 
 /*
-* all init launch data.
+* all init launch data includding velocity, acceration, and direction.
 */
 void Projectile::applyLaunchPhysics(double angle)
 {
@@ -23,6 +23,10 @@ void Projectile::applyLaunchPhysics(double angle)
 	cout << "\n";
 
 }
+
+
+
+
 
 void Projectile::applyPhysics()
 {
