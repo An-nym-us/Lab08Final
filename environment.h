@@ -1,6 +1,7 @@
 #pragma once
 #include "position.h"
 #include "acceleration.h"
+#include "velocity.h"
 #include <vector>
 
 
@@ -18,8 +19,8 @@ public:
 
 	double getDragAccelerationAtPosition(Position &position); // Returned in M/S^2 (acceleration)
 	void applyGravity(Acceleration* currentAcceleration);
-	void applyIniteria(Position& position);
-	void applyDrag(Position* position);
+	void applyIniteria(Acceleration* currentAcceleration, Velocity* currentVelocity, Position* currentProjectilePosition);
+	void applyDrag(Acceleration* currentAcceleration, Velocity* currentVelocity, Position* currentProjectilePosition);
 
 
 

@@ -34,25 +34,23 @@ double Environment::getDragAccelerationAtPosition(Position& position)
 
 }
 
+
+
 void Environment::applyGravity(Acceleration* position)
 {
-
-	//Position storestate; 
-
-	//storestate.setMetersY(EnvironmentalConstants().getGravityAtAltitude(position->getDDy()));
-
 	position->addDDY(EnvironmentalConstants().getGravityAtAltitude(position->getDDy()));
-	
 }
 
-void Environment::applyIniteria(Position& position)
+void Environment::applyIniteria(Acceleration* currentAcceleration, Velocity* currentVelocity, Position* currentProjectilePosition)
 {
 
 
 }
 
-void Environment::applyDrag(Position* position)
-{
 
+
+void Environment::applyDrag(Acceleration* currentAcceleration, Velocity* currentVelocity, Position* currentProjectilePosition)
+{
+	double soemthingWIlGoHere = getDragAccelerationAtPosition(*currentProjectilePosition);
 
 }

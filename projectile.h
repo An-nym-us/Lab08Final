@@ -42,33 +42,41 @@ public:
 
 
 
-    Projectile();
-    void advance(double time);
-    void draw(ogstream &gout) const;
+
+
+
+
+	/* We can remvoe this from here This is to stay in the callback or placed in the gamestate*/
+    //void draw(ogstream &gout) const; 
+	//    void advance(double time);
+
+
+
     bool flying();
     double getAltitude();
-    double getFlightTime();
+
+
     double getFlightDistance();
     double getSpeed();
     double getCurrentTime();
-    void setMass(double mass)
-    {
-        this -> mass = mass;
-    }
-    void setRadious(double radious)
-    {
-        this -> radious = radious;
-    }
+
+
+	/*  We can keep these for now, But i dont believe that we will need these*/
+	double getMass() { return MASS; }
+	double getRadius() { return RADIUS;  }
+	double getInitVelocity() { return INITVELOCITY; }
     
 private:
-    double mass;
-    double radious;
-    vector<int> flightPath;
-}
-	double testing = 0;
-	Position currentLocation;
+	const double MASS = 777; // In KG
+	const double RADIUS = 777; // In meters
+	const double INITVELOCITY = 777;
 
-	//These classes will only be destroy once the projectile class is destroyed
+
+
+
+
+	//These classes will never be destroy. all information contaied in them are safe to access and chagne at any time
+	Position* currentLocation = new Position(); // the current loction of the object in world space.
 	Velocity* velocityInstance = new Velocity();
 	Acceleration* accelerationInstance = new Acceleration();
 

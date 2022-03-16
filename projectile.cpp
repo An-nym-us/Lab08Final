@@ -5,6 +5,10 @@
 #include "position.h"
 
 
+
+/*
+* all init launch data.
+*/
 void Projectile::applyLaunchPhysics(double angle)
 {
 	cout << "Lanuch physics called" << endl;
@@ -22,14 +26,22 @@ void Projectile::applyLaunchPhysics(double angle)
 
 void Projectile::applyPhysics()
 {
-	double value = currentLocation.getMetersY();
-	//double currentVelocity = velocityInstance->getDy();
-	//double currentacclereateion = accelerationInstance->getDDy();
+	double tempvalue = currentLocation->getMetersY();
+
+
+	Environment().applyGravity(accelerationInstance);  // The gravity system is working as intended. As long as the class and input vlaues dont change this system works great.
 
 
 
-	Environment().applyGravity(accelerationInstance);
-	setCurrentLocationY(accelerationInstance->getDDy() + value);
+	/* These systems need to be intergrate. Note all systems are passed by point, so the values 
+	passed into the methods will be changed and alter with in each of the methods*/
+	Environment().applyIniteria(accelerationInstance, velocityInstance, currentLocation);
+	Environment().applyDrag(accelerationInstance, velocityInstance, currentLocation);
+
+
+	// part debug but also part keep state.
+	setCurrentLocationY(accelerationInstance->getDDy() + tempvalue);
+	//setCurrentLocationX(accelerationInstance->getDDx() + 1);
 
 
 
@@ -43,17 +55,17 @@ void Projectile::applyPhysics()
 
 double Projectile::getCurrentLocationX()
 {
-	return currentLocation.getMetersX();
+	return currentLocation->getMetersX();
 }
 double Projectile::getCurrentLocationY()
 {
-	return currentLocation.getMetersY();
+	return currentLocation->getMetersY();
 }
 void Projectile::setCurrentLocationX(double X)
 {
-	currentLocation.setMetersX(X);
+	currentLocation->setMetersX(X);
 }
 void Projectile::setCurrentLocationY(double Y)
 {
-	currentLocation.setMetersY(Y);
+	currentLocation->setMetersY(Y);
 }
