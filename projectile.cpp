@@ -33,13 +33,15 @@ void Projectile::applyPhysics()
 
 
 
-	/* These systems need to be intergrate. Note all systems are passed by point, so the values 
-	passed into the methods will be changed and alter with in each of the methods*/
+	/************************************************************ 
+	These systems need to be intergrate. Note all systems are passed by point, so the values 
+	passed into the methods will be changed and alter with in each of the methods
+	************************************************************/
 	Environment().applyIniteria(accelerationInstance, velocityInstance, currentLocation);
 	Environment().applyDrag(accelerationInstance, velocityInstance, currentLocation);
 
 
-	// part debug but also part keep state.
+	/* part debug but also part keep state.*/ 
 	setCurrentLocationY(accelerationInstance->getDDy() + tempvalue);
 	//setCurrentLocationX(accelerationInstance->getDDx() + 1);
 
