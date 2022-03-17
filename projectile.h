@@ -67,9 +67,9 @@ public:
 	double getInitVelocity() { return INITVELOCITY; }
     
 private:
-	const double MASS = 777; // In KG
-	const double RADIUS = 777; // In meters
-	const double INITVELOCITY = 777;
+	const double MASS = 46.7; // In KG
+	const double RADIUS = 154.89 / 2.00; // In meters
+	const double INITVELOCITY = 827;
 
 
 

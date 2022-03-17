@@ -12,10 +12,21 @@
 void Projectile::applyLaunchPhysics(double angle)
 {
 	cout << "Lanuch physics called" << endl;
-	accelerationInstance->setDDy(500);
-	velocityInstance->setDy(1000);
 
+	cout << angle << "is convert " << endl;
 
+	/*****************************************************************
+	* The reason why we have the get initl velocity inside the acceleration
+	* Instanace is because the equation for acceleration is (acc = velocity / time)
+	* The intil accelerationof the projectile is intial velocity / 1.
+	*****************************************************************/
+	accelerationInstance->setDDx(sin(angle) * getInitVelocity() / 1);
+	accelerationInstance->setDDy(cos(angle) * getInitVelocity() / 1);
+
+	velocityInstance->setDx(sin(angle) * getInitVelocity());
+	velocityInstance->setDy(cos(angle) * getInitVelocity());
+
+	
 
 
 	cout << "launch Angle is: " << angle << endl;
@@ -30,25 +41,17 @@ void Projectile::applyLaunchPhysics(double angle)
 
 void Projectile::applyPhysics()
 {
-	double tempvalue = currentLocation->getMetersY();
-
-
 	Environment().applyGravity(accelerationInstance);  // The gravity system is working as intended. As long as the class and input vlaues dont change this system works great.
 
+	Environment().applyIniteria(accelerationInstance, velocityInstance, currentLocation);
 
 
 	/************************************************************ 
 	These systems need to be intergrate. Note all systems are passed by point, so the values 
 	passed into the methods will be changed and alter with in each of the methods
 	************************************************************/
-	Environment().applyIniteria(accelerationInstance, velocityInstance, currentLocation);
+
 	Environment().applyDrag(accelerationInstance, velocityInstance, currentLocation);
-
-
-	/* part debug but also part keep state.*/ 
-	setCurrentLocationY(accelerationInstance->getDDy() + tempvalue);
-	//setCurrentLocationX(accelerationInstance->getDDx() + 1);
-
 
 
 }

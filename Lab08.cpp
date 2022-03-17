@@ -84,8 +84,7 @@ using namespace std;
 
 bool startSim = false; // inilize sim outside loop.
 bool tempLaunchPRohectile = false;
-double howX = 0;
-double howY = 0;
+
 
 void callBack(const Interface* pUI, void* p)
 {
@@ -103,16 +102,16 @@ void callBack(const Interface* pUI, void* p)
    // move a large amount
    if (pUI->isRight())
        //pGameStateInstance->addLaunchAngle();
-      pGameStateInstance->angle += 0.05;
+      pGameStateInstance->angle += 0.03;
    if (pUI->isLeft())
        //pGameStateInstance->subtractLaunchAngle();
-      pGameStateInstance->angle -= 0.05;
+      pGameStateInstance->angle -= 0.03;
 
    // move by a little
    if (pUI->isUp())
-      pGameStateInstance->angle += (pGameStateInstance->angle >= 0 ? -0.003 : 0.003);
+      pGameStateInstance->angle += (pGameStateInstance->angle >= 0 ? -0.002 : 0.002);
    if (pUI->isDown())
-      pGameStateInstance->angle += (pGameStateInstance->angle >= 0 ? 0.003 : -0.003);
+      pGameStateInstance->angle += (pGameStateInstance->angle >= 0 ? 0.002 : -0.002);
 
    // fire that gun
    if (pUI->isSpace())

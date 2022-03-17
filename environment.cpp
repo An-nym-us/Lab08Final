@@ -1,5 +1,6 @@
 #include "environment.h"
 #include "environmentalConstants.h"
+
 #include <iostream>
 #include <cmath>  
 using namespace std;
@@ -43,7 +44,15 @@ void Environment::applyGravity(Acceleration* position)
 
 void Environment::applyIniteria(Acceleration* currentAcceleration, Velocity* currentVelocity, Position* currentProjectilePosition)
 {
+	currentVelocity->setDx(currentAcceleration->getDDx() * .5);
+	currentVelocity->setDy(currentAcceleration->getDDy() * .5);
+	double timedil = .5;
+	double temp = currentProjectilePosition->getMetersY() + (currentVelocity->getDy() * timedil) + (.5 * currentAcceleration->getDDy() * (timedil * timedil) );
 
+	currentProjectilePosition->setMetersY(temp);
+
+	double temp2 = currentProjectilePosition->getMetersX() + (currentVelocity->getDx() * timedil) + (.5 * currentAcceleration->getDDx() * (timedil * timedil));
+	currentProjectilePosition->setMetersX(temp2);
 
 }
 
