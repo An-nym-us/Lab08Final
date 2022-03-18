@@ -21,7 +21,6 @@ double Environment::getForceOnSheelDueToDrag(double altitude, double velocity, d
 
 	return .5 * dragCoe * p * (velocity * velocity) * surfaceArea;
 
-	
 }
 
 
