@@ -51,7 +51,7 @@ void Projectile::applyPhysics()
 	passed into the methods will be changed and alter with in each of the methods
 	************************************************************/
 
-	Environment().applyDrag(accelerationInstance, velocityInstance, currentLocation);
+	Environment().applyDrag(accelerationInstance, velocityInstance, currentLocation, getMass(), getRadius());
 
 
 }

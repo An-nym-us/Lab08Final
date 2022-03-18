@@ -68,7 +68,7 @@ public:
     
 private:
 	const double MASS = 46.7; // In KG
-	const double RADIUS = 154.89 / 2.00; // In meters
+	const double RADIUS = .15489 / 2.00; // In meters
 	const double INITVELOCITY = 827;
 
 

@@ -47,7 +47,7 @@ public:
     }
 
 
-    double getSpeed();
+    double getSpeed() { return sqrt(dx * dx + dy * dy); }
     
 
     double setSpeed();
