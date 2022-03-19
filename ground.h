@@ -46,6 +46,8 @@ public:
       return posTarget;
    }
 
+   bool hitTarget(const Position & pos) const;
+
 private:
    double * ground;               // elevation of the ground, in pixels 
    Position posTarget;                // the location of the target, in pixels

@@ -150,3 +150,29 @@ void Ground::draw(ogstream & gout) const
    }
 
 }
+
+//bool Ground :: hitTarget(const Position &pos) const
+//{
+//   if(pos == getTarget())
+//       return true;
+//    return false;
+//}
+
+bool Ground:: hitTarget(const Position &post)const
+{
+    cout << getElevationMeters(post) << " Y-axis here " << endl;
+    if(getElevationMeters(post) > 1.0)
+        return false;
+    
+    if(getElevationMeters(post) < 0.0)
+        return false;
+    
+    if(post.getMetersX() < getTarget().getMetersX())
+        return false;
+    
+    if(post.getMetersY() > getTarget().getMetersY())
+        return false;
+    
+    return true;
+}
+

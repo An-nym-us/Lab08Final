@@ -54,7 +54,7 @@ using namespace std;
 //   Position  projectilePath[20];  // path of the projectile
 //   Position  ptHowitzer;          // location of the howitzer
 //   Position  ptUpperRight;        // size of the screen
-//   double angle;                  // angle of the howitzer 
+//   double angle;                  // angle of the howitzer
 //   double time;                   // amount of time since the last firing
 //};
 
@@ -82,17 +82,18 @@ using namespace std;
  **************************************/
 
 
+
+
 bool startSim = false; // inilize sim outside loop.
 bool tempLaunchPRohectile = false;
-
-
 void callBack(const Interface* pUI, void* p)
 {
    // the first step is to cast the void pointer into a game object. This
-   // is the first step of every single callback function in OpenGL. 
-   GameState* pGameStateInstance = (GameState*)p;
+   // is the first step of every single callback function in OpenGL.
+    
 
-   
+
+   GameState* pGameStateInstance = (GameState*)p;
 
 
    //
@@ -118,6 +119,7 @@ void callBack(const Interface* pUI, void* p)
    {
        pGameStateInstance->time = 0.0;
        startSim = true;
+       
    }
 
 
@@ -126,34 +128,30 @@ void callBack(const Interface* pUI, void* p)
    //
 
 
+    double targetLocation = pGameStateInstance -> getGround().getTarget().getMetersX();
+    double targetLocationY = pGameStateInstance -> getGround().getTarget().getMetersY();
+    double xPath = pGameStateInstance -> getProjectile() -> getCurrentLocationX();
+    double yPath = pGameStateInstance -> getProjectile() -> getCurrentLocationY();
+    
+    // advance time by half a second.
 
-   // advance time by half a second.
-   pGameStateInstance->time += 0.5;
-
-
-
-
-
-
+    pGameStateInstance->time += 0.5;
+  
+//    cout << targetLocation << " ," << targetLocationY<< " These are my paths::" << endl;
+ 
    // move the projectile across the screen
-
-
-
-
    if (startSim == true)
    {
-
+    
        pGameStateInstance->getProjectile()->setCurrentLocationX(pGameStateInstance->getptHowitzer().getMetersX());
        pGameStateInstance->getProjectile()->setCurrentLocationY(pGameStateInstance->getptHowitzer().getMetersY());
        pGameStateInstance->getProjectile()->applyLaunchPhysics(pGameStateInstance->angle);
-
-       startSim = false; // Do this function once ssytem, this will need to get move into the game state class at some point
+     
+       startSim = false;
+//       startSim = false; // Do this function once ssytem, this will need to get move into the game state class at some point
        tempLaunchPRohectile = true;
        cout << "Sim has started" << endl;
    }
-
-
-
 
 
    if (tempLaunchPRohectile == true)
@@ -161,19 +159,14 @@ void callBack(const Interface* pUI, void* p)
        pGameStateInstance->GameStateTickProgress();
    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+//    if((xPath>=0 && xPath == targetLocation) && (yPath>=0 && yPath == targetLocationY))
+//    {
+//        exit(0);
+//    }
+    
+    if(pGameStateInstance->getGround().hitTarget(Position(xPath,yPath)) == true) {
+        exit(0);
+    }
    //
    // draw everything
    //
@@ -198,15 +191,6 @@ void callBack(const Interface* pUI, void* p)
 }
 
 double Position::metersFromPixels = 40.0;
-
-
-
-
-
-
-
-
-
 
 
 
