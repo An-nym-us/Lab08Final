@@ -36,12 +36,14 @@ public:
 
 
     Position getCurrentPointLocation() { return *currentLocation; }
-
+    Velocity getVelocityInstance() { return *velocityInstance; }
 
     /*  We can keep these for now, But i dont believe that we will need these*/
     double getMass() { return MASS; }
     double getRadius() { return RADIUS;  }
     double getInitVelocity() { return INITVELOCITY; }
+
+    
 
     
 private:

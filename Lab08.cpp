@@ -117,7 +117,7 @@ void callBack(const Interface* pUI, void* p)
    // fire that gun
    if (pUI->isSpace())
    {
-       pGameStateInstance->time = 0.0;
+       pGameStateInstance->resetTimer();
        startSim = true;
        
    }
@@ -135,7 +135,6 @@ void callBack(const Interface* pUI, void* p)
     
     // advance time by half a second.
 
-    pGameStateInstance->time += 0.5;
   
 //    cout << targetLocation << " ," << targetLocationY<< " These are my paths::" << endl;
  
@@ -159,10 +158,7 @@ void callBack(const Interface* pUI, void* p)
        pGameStateInstance->GameStateTickProgress();
    }
 
-//    if((xPath>=0 && xPath == targetLocation) && (yPath>=0 && yPath == targetLocationY))
-//    {
-//        exit(0);
-//    }
+
     
 
    //
@@ -175,17 +171,30 @@ void callBack(const Interface* pUI, void* p)
    pGameStateInstance->getGround().draw(gout);
 
    // draw the howitzer
-   gout.drawHowitzer(pGameStateInstance->getptHowitzer(), pGameStateInstance->angle, pGameStateInstance->time);
+   gout.drawHowitzer(pGameStateInstance->getptHowitzer(), pGameStateInstance->angle, pGameStateInstance->getTimer());
 
    // draw the projectile
    for (int i = 0; i < 20; i++)
       gout.drawProjectile(pGameStateInstance->projectilePath[i], 0.5 * (double)i);
 
+
+
    // draw some text on the screen
    gout.setf(ios::fixed | ios::showpoint);
    gout.precision(1);
-   gout << "Time since the bullet was fired: "
-      << pGameStateInstance->time << "s\n";
+   gout << "Hang Time: "
+      << pGameStateInstance->getTimer() << "s";
+   gout << "\tAltitude: "
+       << pGameStateInstance->getProjectile()->getCurrentLocationY() << " meters";
+   gout << "\tSpeed: "
+       << pGameStateInstance->getProjectile()->getVelocityInstance().getSpeed() << " m/s";
+   gout << "\tDistance: "
+       <<  (pGameStateInstance->getProjectile()->getCurrentLocationX() - pGameStateInstance->getptHowitzer().getMetersX()) << " meters\n";
+   gout << "\tHowitzer Angle: "
+       << (pGameStateInstance->angle * (180 / 3.1415927)) << " Degrees";
+
+
+
 }
 
 double Position::metersFromPixels = 40.0;

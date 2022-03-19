@@ -38,7 +38,7 @@ public:
 
 
     double angle;
-    double time;                   // amount of time since the last firing
+                   // amount of time since the last firing
 
 
 
@@ -47,7 +47,6 @@ public:
 
     void GameStateTickProgress()
     {
-
 
         if (ground.hitTarget(this->getProjectile()->getCurrentPointLocation()))
         {
@@ -65,15 +64,13 @@ public:
 
 
 
-
-
-
         for (int i = 0; i < 20; i++)
         {
             double x = this->projectilePath->getPixelsX();
             double y = this->projectilePath->getPixelsY();
         }
 
+        this->advanceTimer();
         this->getProjectile()->applyPhysics();
 
 
@@ -93,12 +90,17 @@ public:
     Position getptUpperRight() { return ptUpperRight; }
 
 
+    void advanceTimer() { time += .5; }
+    void resetTimer() { time = 0; }
+    double getTimer() { return time; }
 
 
+
+    /* No worky*/
     double getLaunchAngle() { return launchAngle; }
     void addLaunchAngle() { this->launchAngle += 0.05; }
     void subtractLaunchAngle() { this->launchAngle -= 0.05; }    // angle of the howitzer };
-
+        /* No worky*/
 
 
 private:
@@ -108,6 +110,6 @@ private:
     Position  ptUpperRight;        // size of the screen
     Ground ground;
     double launchAngle;                  // angle of the howitzer 
-
+    double time;
 
 };
