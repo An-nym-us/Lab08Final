@@ -51,17 +51,21 @@ public:
 
         if (ground.hitTarget(this->getProjectile()->getCurrentPointLocation()))
         {
-            //cout << "did i hit ground palteform" << endl;
-        }
-
-        //cout << "Elevation " << ground.getElevationMeters(this->getProjectile()->getCurrentPointLocation()) << endl;
-       //cout << " Prjectil elocateion " << this->getProjectile()->getCurrentLocationY() << endl;
-
-        if (ground.getElevationMeters(this->getProjectile()->getCurrentPointLocation()) > this->getProjectile()->getCurrentLocationY())
-        {
-            //cout << "end game" << endl;
+            cout << " YOU WIN!" << endl;
             return;
         }
+
+        /* Check if the projecile is below the minimum elevationof the ground. if it is below the ground elevation then you loose*/
+        if (ground.getElevationMeters(this->getProjectile()->getCurrentPointLocation()) > this->getProjectile()->getCurrentLocationY())
+        {
+            cout << "YOU LOSE  :(" << endl;
+            return;
+        }
+
+
+
+
+
 
 
         for (int i = 0; i < 20; i++)
