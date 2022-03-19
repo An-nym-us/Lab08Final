@@ -1,81 +1,129 @@
+#pragma once
+#include <cassert>      // for ASSERT
+#include "uiInteract.h" // for INTERFACE
+#include "uiDraw.h"     // for RANDOM and DRAW*
+#include "ground.h"     // for GROUND
+#include "position.h"   // for POINT
+#include <iostream>
+#include <cmath>
 #include "projectile.h"
-#include "environment.h"
-#include "environmentalConstants.h"
 
-#include "position.h"
-
-
-
-/*
-* all init launch data includding velocity, acceration, and direction.
-*/
-void Projectile::applyLaunchPhysics(double angle)
+class GameState
 {
-	cout << "Lanuch physics called" << endl;
+public:
+    GameState(Position ptUpperRight) :
+        ptUpperRight(ptUpperRight),
+        ground(ptUpperRight),
+        time(0.0),
+        angle(0.0)
+    {
+        ptHowitzer.setPixelsX(Position(ptUpperRight).getPixelsX() / 2.0);
+        ptHowitzer.setPixelsY(Position(ptUpperRight).getPixelsY() / 4.0);
 
-	cout << angle << "is convert " << endl;
+        ground.reset(ptHowitzer);
 
-	/*****************************************************************
-	* The reason why we have the get initl velocity inside the acceleration
-	* Instanace is because the equation for acceleration is (acc = velocity / time)
-	* The intil accelerationof the projectile is intial velocity / 1.
-	*****************************************************************/
-	accelerationInstance->setDDx(sin(angle) * getInitVelocity() / 1);
-	accelerationInstance->setDDy(cos(angle) * getInitVelocity() / 1);
+                for (int i = 0; i < 20; i++)
+                {
+                    double x = this->projectilePath->getPixelsX();
+                    double y = this->projectilePath->getPixelsY();
+                    projectilePath[i].setPixelsX(x);
+                    projectilePath[i].setPixelsY(y);
+                }
 
-	velocityInstance->setDx(sin(angle) * getInitVelocity());
-	velocityInstance->setDy(cos(angle) * getInitVelocity());
-
-	
-
-
-	cout << "launch Angle is: " << angle << endl;
-	cout << "Set acceleration is: " << accelerationInstance->getDDy() << endl;
-	cout << "\n";
-
-}
-
-
-
-
-
-void Projectile::applyPhysics()
-{
-	Environment().applyGravity(accelerationInstance);  // The gravity system is working as intended. As long as the class and input vlaues dont change this system works great.
-
-	Environment().applyIniteria(accelerationInstance, velocityInstance, currentLocation);
+//        for (int i = 0; i < 20; i++)
+//        {
+//            {
+//                projectilePath[i].setPixelsX((double)i * 2.0);
+//                projectilePath[i].setPixelsY(ptUpperRight.getPixelsY() / 1.5);
+//            }
+//        }
+    }
+    // the ground
 
 
-	/************************************************************ 
-	These systems need to be intergrate. Note all systems are passed by point, so the values 
-	passed into the methods will be changed and alter with in each of the methods
-	************************************************************/
 
-	Environment().applyDrag(accelerationInstance, velocityInstance, currentLocation, getMass(), getRadius());
-
-
-}
+    double angle;
+                  
 
 
 
 
 
 
+    void GameStateTickProgress()
+    {
+        ogstream gout;
+        gout.setPosition(Position(10000.0,15000));
 
-double Projectile::getCurrentLocationX()
-{
-	return currentLocation->getMetersX();
-}
-double Projectile::getCurrentLocationY()
-{
-	return currentLocation->getMetersY();
-}
-void Projectile::setCurrentLocationX(double X)
-{
-	currentLocation->setMetersX(X);
-}
-void Projectile::setCurrentLocationY(double Y)
-{
-	currentLocation->setMetersY(Y);
-}
+        if (ground.hitTarget(this->getProjectile()->getCurrentPointLocation()))
+        {
+        
+            gout << "You WIN!";
+            return;
+        }
 
+        /* Check if the projecile is below the minimum elevationof the ground. if it is below the ground elevation then you loose*/
+        if (ground.getElevationMeters(this->getProjectile()->getCurrentPointLocation()) > this->getProjectile()->getCurrentLocationY())
+        {
+            gout << "YOU LOSE  :(" << endl;
+            return;
+        }
+
+
+
+
+//        for (int i = 0; i < 20; i++)
+//        {
+//            double x = this->projectilePath->getPixelsX();
+//            double y = this->projectilePath->getPixelsY();
+//            projectilePath[i].setPixelsX(x);
+//            projectilePath[i].setPixelsY(y);
+//        }
+
+        this->advanceTimer();
+        this->getProjectile()->applyPhysics();
+
+
+        this->projectilePath->setMetersY(this->getProjectile()->getCurrentLocationY());
+        this->projectilePath->setMetersX(this->getProjectile()->getCurrentLocationX());
+    };
+    
+    void onScreenStats();
+
+
+
+
+
+    Position  projectilePath[20];  // path of the projectile
+    
+    Position  ptUpperRight;        // size of the screen
+
+    Projectile* getProjectile() { return projectileInstance; }
+    Ground getGround() { return ground; }
+    Position getptHowitzer() { return ptHowitzer; }
+    Position getptUpperRight() { return ptUpperRight; }
+
+
+    void advanceTimer() { time += .5; }
+    void resetTimer() { time = 0; }
+    double getTimer() { return time; }
+
+
+
+    /* No worky*/
+    double getLaunchAngle() { return launchAngle; }
+    void addLaunchAngle() { this->launchAngle += 0.05; }
+    void subtractLaunchAngle() { this->launchAngle -= 0.05; }    // angle of the howitzer };
+        /* No worky*/
+    
+
+
+private:
+
+    Projectile* projectileInstance = new Projectile();
+    Position  ptHowitzer;          // location of the howitzer
+    Ground ground;
+    double launchAngle;                  // angle of the howitzer
+    double time;
+
+};
