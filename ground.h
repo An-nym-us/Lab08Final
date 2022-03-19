@@ -46,6 +46,8 @@ public:
       return posTarget;
    }
 
+   
+
    bool hitTarget(const Position & pos) const;
 
 private:

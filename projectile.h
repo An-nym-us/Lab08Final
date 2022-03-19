@@ -51,9 +51,9 @@ public:
     //    void advance(double time);
 
 
-
-    bool flying();
-    double getAltitude();
+    Position getCurrentPointLocation() { return *currentLocation; }
+    //bool flying();
+    //double getAltitude();
 
 
     double getFlightDistance();
@@ -61,10 +61,12 @@ public:
     double getCurrentTime();
 
 
+
     /*  We can keep these for now, But i dont believe that we will need these*/
     double getMass() { return MASS; }
     double getRadius() { return RADIUS;  }
     double getInitVelocity() { return INITVELOCITY; }
+
     
 private:
     const double MASS = 46.7; // In KG

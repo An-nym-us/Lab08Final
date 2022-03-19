@@ -79,7 +79,7 @@ void Projectile::setCurrentLocationY(double Y)
 	currentLocation->setMetersY(Y);
 }
 
-bool Projectile:: flying()
-{
-    return false;
-}
+//bool Projectile:: flying()
+//{
+//    return false;
+//}

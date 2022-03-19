@@ -11,6 +11,8 @@
 #include "uiDraw.h"   // for random() and drawLine()
 #include <cassert>
 
+
+using namespace std;
 const int WIDTH_HOWITZER = 14;
 
 const double MIN_ALTITUDE = 300.0;  // min altitude is at 984'
@@ -151,16 +153,12 @@ void Ground::draw(ogstream & gout) const
 
 }
 
-//bool Ground :: hitTarget(const Position &pos) const
-//{
-//   if(pos == getTarget())
-//       return true;
-//    return false;
-//}
+
 
 bool Ground:: hitTarget(const Position &post)const
 {
     cout << getElevationMeters(post) << " Y-axis here " << endl;
+    cout << getTarget().getMetersY() << " target here " << endl;
     if(getElevationMeters(post) > 1.0)
         return false;
     

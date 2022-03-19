@@ -164,9 +164,7 @@ void callBack(const Interface* pUI, void* p)
 //        exit(0);
 //    }
     
-    if(pGameStateInstance->getGround().hitTarget(Position(xPath,yPath)) == true) {
-        exit(0);
-    }
+
    //
    // draw everything
    //

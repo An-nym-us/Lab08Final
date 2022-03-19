@@ -47,11 +47,21 @@ public:
 
     void GameStateTickProgress()
     {
-        this->getProjectile()->applyPhysics();
-        
-        
-        this->projectilePath->setMetersY(this->getProjectile()->getCurrentLocationY());
-        this->projectilePath->setMetersX(this->getProjectile()->getCurrentLocationX());
+
+
+        if (ground.hitTarget(this->getProjectile()->getCurrentPointLocation()))
+        {
+            //cout << "did i hit ground palteform" << endl;
+        }
+
+        //cout << "Elevation " << ground.getElevationMeters(this->getProjectile()->getCurrentPointLocation()) << endl;
+       //cout << " Prjectil elocateion " << this->getProjectile()->getCurrentLocationY() << endl;
+
+        if (ground.getElevationMeters(this->getProjectile()->getCurrentPointLocation()) > this->getProjectile()->getCurrentLocationY())
+        {
+            //cout << "end game" << endl;
+            return;
+        }
 
 
         for (int i = 0; i < 20; i++)
@@ -59,6 +69,12 @@ public:
             double x = this->projectilePath->getPixelsX();
             double y = this->projectilePath->getPixelsY();
         }
+
+        this->getProjectile()->applyPhysics();
+
+
+        this->projectilePath->setMetersY(this->getProjectile()->getCurrentLocationY());
+        this->projectilePath->setMetersX(this->getProjectile()->getCurrentLocationX());
     };
 
 
