@@ -1,51 +1,75 @@
-
 #include "gameState.h"
 
 
-void GameState::gameStateTickProgression()
+/*************************************************************************
+ *
+ *
+ *************************************************************************/
+void GameState::activeSimulationTickProgression()
 {
-
-    if (ground.hitTarget(this->getProjectile()->getCurrentPointLocation()))
-    {
-        cout << " YOU WIN!" << endl;
-        return;
-    }
-
-    /* Check if the projecile is below the minimum elevationof the ground. if it is below the ground elevation then you loose*/
-    if (ground.getElevationMeters(this->getProjectile()->getCurrentPointLocation()) > this->getProjectile()->getCurrentLocationY())
-    {
-        cout << "YOU LOSE  :(" << endl;
-        return;
-    }
-
-
+    this->gameStateProjectileStatus();
     this->advanceTimer();
     this->getProjectile()->applyPhysics();
     this->getProjectile()->refreshProjectileTail();
+}
 
 
-};
+/*************************************************************************
+ *
+ *
+ *************************************************************************/
+void GameState::gameStateProjectileStatus()
+{
+    ogstream gout(Position(10000.0, 10000));
+
+    if (ground.hitTarget(this->getProjectile()->getCurrentPointLocation()))
+    {
+        gout << "Target Hit!!!";
+        return;
+    }
+
+    /* Check if the projecile is below the minimum elevationof the ground. if it is below the ground elevation then you lose*/
+    if (ground.getElevationMeters(this->getProjectile()->getCurrentPointLocation()) > this->getProjectile()->getLocationY())
+    {
+        gout << "Target Missed";
+        return;
+    }
+}
+
+
+/*************************************************************************
+ * Fire any pre flight simualtion like settign pre-flight launch information
+ *************************************************************************/
+void GameState::activatePreFlightCheck() 
+{ 
+    resetTimer();
+    this->getProjectile()->initializeProjectileLaunchState(this->getLaunchAngle(), this->getptHowitzer());
+    simulationPreFlightcheck = true; 
+}
 
 
 
 
+/*************************************************************************
+ *
+ *
+ *************************************************************************/
 void GameState::displayScreen()
 {
-    
-    ogstream gout(Position(5000.0, 18000));
+    ogstream gout(Position(21000.0, 19000));
 
 
     gout.setf(ios::fixed | ios::showpoint);
     gout.precision(1);
     gout << "Hang Time: "
-        << this->getTimer() << "s";
-    gout << "\tAltitude: "
-        << this->getProjectile()->getCurrentLocationY() << " meters";
-    gout << "\tSpeed: "
-        << this->getProjectile()->getVelocityInstance().getSpeed() << " m/s";
-    gout << "\tDistance: "
-        << (this->getProjectile()->getCurrentLocationX() - this->getptHowitzer().getMetersX()) << " meters\n";
-    gout << "\tHowitzer Angle: "
+        << this->getTimer() << "s\n";
+    gout << "Altitude: "
+        << this->getProjectile()->getLocationY() << " meters\n";
+    gout << "Speed: "
+        << this->getProjectile()->getVelocityInstance().getSpeed() << " m/s\n";
+    gout << "Distance: "
+        << (this->getProjectile()->getLocationX() - this->getptHowitzer().getMetersX()) << " meters\n";
+    gout << "Howitzer Angle: "
         << (this->getLaunchAngle() * (180 / 3.1415927)) << " Degrees";
 
 

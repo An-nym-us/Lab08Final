@@ -155,21 +155,22 @@ void Ground::draw(ogstream & gout) const
 
 
 
+
+/************************************************************************
+ * Game state check
+ * Check if projectile has impacted the target cube
+ ************************************************************************/
 bool Ground:: hitTarget(const Position &ProjectilePosition)const
 {
-
-
-    /* This will see ofthe projectile is within a range of the width of the center ofthe cube */
+    /* This will see ofthe projectile is within a range of the width of the center of the cube */
     if (!  (((getTarget().getMetersX() - 200) < ProjectilePosition.getMetersX()) && ProjectilePosition.getMetersX() < getTarget().getMetersX() +200))
-    {
-        
+    {  
         return false;
     }
 
-    /* This will see ifhte projectile is below the height ofhte cube */
+    /* This will see ifhte projectile is below the height of the cube */
     if (! (ProjectilePosition.getMetersY() < getTarget().getMetersY() ))
     {
-
         return false;
     }
 

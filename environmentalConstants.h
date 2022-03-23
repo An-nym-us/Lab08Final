@@ -1,35 +1,37 @@
+/***********************************************************************
+ * Header File:
+ *		EnvironmentalConstants
+ * Author:
+ *    Jonathan Gunderson, Dahal Sulav
+ * Summary:
+ *		This class file holdd all the reuired information to find the correct
+ * natual constants of mutiple natural phenomenas.
+ *
+ ************************************************************************/
 #pragma once
 #include <vector>
-
-
 
 using namespace std;
 
 
 class EnvironmentalConstants
 {
-
-
-
 public:
+	EnvironmentalConstants() {};
 
 
+	double getDragCoefficientAtMach(double mach) const;
+	double getDensityAtAltitude(double altitude) const;
+	double getGravityAtAltitude(double altitude) const;
+	double getSpeedOfSoundAtAltitude(double altitude) const;
 
-	double getDragCoefficientAtMach(double mach);
-	double getDensityAtAltitude(double altitude);
-	double getGravityAtAltitude(double altitude);
-	double getSpeedOfSoundAtAltitude(double altitude);
-
-
-
-
-	double interpolation(double d0, double r0, double d1, double r1, double d);
-	double interpolation(vector<double> lowerBounds, vector<double> upperBounds, double targetValue);
+	double interpolation(double d0, double r0, double d1, double r1, double d) const;
+	double interpolation(vector<double> lowerBounds, vector<double> upperBounds, double targetValue) const;
 
 private:
 
-	vector<double> findLowerBound(double inputValue, vector<vector<double>> dataTable);
-	vector<double> findUpperBound(double inputValue, vector<vector<double>> datatTable);
+	vector<double> findLowerBound(double inputValue, vector<vector<double>> dataTable) const; /* find lowest value inside the table that is closest to the asked value from the user */
+	vector<double> findUpperBound(double inputValue, vector<vector<double>> datatTable) const;/* find highest value inside the table that is closest to the asked value from the user */
 
 
 

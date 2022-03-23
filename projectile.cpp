@@ -1,13 +1,14 @@
 #include "projectile.h"
 #include "environment.h"
-#include "environmentalConstants.h"
-
 #include "position.h"
 
 
 
 
-
+/*************************************************************************
+ *
+ *
+ *************************************************************************/
 void Projectile::refreshProjectileTail()
 {
 	projectileTail.insert(projectileTail.begin(), this->getCurrentPointLocation());
@@ -16,11 +17,12 @@ void Projectile::refreshProjectileTail()
 	{
 		projectileTail.pop_back();
 	}
-
-
 }
 
-
+/*************************************************************************
+ * 
+ * 
+ *************************************************************************/
 Position& Projectile::getProjectileTail(double j)
 {
 	for (int i = 0; i < 20; i++)
@@ -65,17 +67,14 @@ void Projectile::initializeProjectileLaunchState(double launchAngle, Position co
 
 void Projectile::applyPhysics()
 {
-	Environment().applyGravity(accelerationInstance);  // The gravity system is working as intended. As long as the class and input vlaues dont change this system works great.
-	Environment().applyIniteria(accelerationInstance, velocityInstance, currentLocation);
-
-
-	/************************************************************ 
-	These systems need to be intergrate. Note all systems are passed by point, so the values 
+	/************************************************************
+	These systems need to be intergrate. Note all systems are passed by point, so the values
 	passed into the methods will be changed and alter with in each of the methods
 	************************************************************/
 
 	Environment().applyDrag(accelerationInstance, velocityInstance, currentLocation, PROJECTILEINITMASS, PROJECTILERADIUS);
-
+	Environment().applyGravity(accelerationInstance);  // Apply gravity to projectile based on its current altitude
+	Environment().applyIniteria(accelerationInstance, velocityInstance, currentLocation); // Apply initeria to the projectile
 
 }
 
@@ -85,11 +84,11 @@ void Projectile::applyPhysics()
 
 
 
-double Projectile::getCurrentLocationX()
+double Projectile::getLocationX()
 {
 	return currentLocation->getMetersX();
 }
-double Projectile::getCurrentLocationY()
+double Projectile::getLocationY()
 {
 	return currentLocation->getMetersY();
 }

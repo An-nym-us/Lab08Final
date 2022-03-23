@@ -1,5 +1,4 @@
 #include "environmentalConstants.h"
-#include <iostream>
 #include <math.h>
 
 
@@ -9,7 +8,7 @@ using namespace std;
 /*****************************************************************************************
 * Find the lowest value bounds in a Vector Array
 *****************************************************************************************/
-vector<double> EnvironmentalConstants::findLowerBound(double inputValue, vector<vector<double>> dataTable)
+vector<double> EnvironmentalConstants::findLowerBound(double inputValue, vector<vector<double>> dataTable) const
 {
 	vector<vector<double>> splitState = dataTable;
 	
@@ -61,7 +60,7 @@ vector<double> EnvironmentalConstants::findLowerBound(double inputValue, vector<
 /*****************************************************************************************
 * Find the Highest value bounds in a Vector Array 
 *****************************************************************************************/
-vector<double> EnvironmentalConstants::findUpperBound(double inputValue, vector<vector<double>> dataTable)
+vector<double> EnvironmentalConstants::findUpperBound(double inputValue, vector<vector<double>> dataTable) const
 {
 	vector<vector<double>> splitState = dataTable;
 
@@ -110,10 +109,9 @@ vector<double> EnvironmentalConstants::findUpperBound(double inputValue, vector<
 }
 
 /*****************************************************************
-*
-*
+* Interpolation based on raw double values
 *****************************************************************/
-double EnvironmentalConstants::interpolation(double d0, double r0, double d1, double r1, double d)
+double EnvironmentalConstants::interpolation(double d0, double r0, double d1, double r1, double d) const
 {
 	double range = r0 + (r1 - r0) * (d - d0) / (d1 - d0);
 
@@ -131,10 +129,9 @@ double EnvironmentalConstants::interpolation(double d0, double r0, double d1, do
 
 
 /*****************************************************************
-*
-*
+* Interpilation based on vector inputs
 *****************************************************************/
-double EnvironmentalConstants::interpolation(vector<double> lowerBounds, vector<double> upperBounds, double targetValue)
+double EnvironmentalConstants::interpolation(vector<double> lowerBounds, vector<double> upperBounds, double targetValue) const
 {
 	double range = lowerBounds.at(1) + (targetValue - lowerBounds.at(0)) * ((upperBounds.at(1) - lowerBounds.at(1)) / (upperBounds.at(0) - lowerBounds.at(0)));
 
@@ -152,30 +149,30 @@ double EnvironmentalConstants::interpolation(vector<double> lowerBounds, vector<
 
 
 /*****************************************************************
-*
-*
+* Find the air density based on the current altitude of the 
+* Projectile by interpolating the data from within the 
+* Air Density table
 *****************************************************************/
-double EnvironmentalConstants::getDensityAtAltitude(double altitude)
+double EnvironmentalConstants::getDensityAtAltitude(double altitude) const
 {
 	return interpolation( findLowerBound(altitude, altitudeAirDensityDataTable), findUpperBound(altitude, altitudeAirDensityDataTable), altitude );
 }
 
 
 /*****************************************************************
-*
-*
+* Find the current Drag corefficient based on the current Mach value
 *****************************************************************/
-double EnvironmentalConstants::getDragCoefficientAtMach(double mach)
+double EnvironmentalConstants::getDragCoefficientAtMach(double mach) const
 {
 	return interpolation(findLowerBound(mach, machDragCoeffiecientDataTable), findUpperBound(mach, machDragCoeffiecientDataTable), mach);
 }
 
 
 /*****************************************************************
-*
-*
+* Calulate teh speed of sound based on the current altitude of
+* the projcetile
 *****************************************************************/
-double EnvironmentalConstants::getSpeedOfSoundAtAltitude(double altitude) 
+double EnvironmentalConstants::getSpeedOfSoundAtAltitude(double altitude) const
 {
 	return interpolation(findLowerBound(altitude, altitudeSpeedOfSoundDataTable), findUpperBound(altitude, altitudeSpeedOfSoundDataTable), altitude);
 }
@@ -183,10 +180,10 @@ double EnvironmentalConstants::getSpeedOfSoundAtAltitude(double altitude)
 
 
 /*****************************************************************
-*
-*
+* get the gravity of the prjectile based on the current altitude
+* of the projcetile
 *****************************************************************/
-double EnvironmentalConstants::getGravityAtAltitude(double altitude)
+double EnvironmentalConstants::getGravityAtAltitude(double altitude) const
 {
 	return ((0.0000030799999999999985 * altitude) + 9.807) * -1;
 }

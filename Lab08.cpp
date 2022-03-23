@@ -113,36 +113,24 @@ void callBack(const Interface* pUI, void* p)
    // fire that gun
    if (pUI->isSpace())
    {
-       pGameStateInstance->resetTimer();
-       startSim = true;
+       pGameStateInstance->activatePreFlightCheck();   
    }
 
 
- 
-
-
- 
-
-   if (startSim == true)
+   if (pGameStateInstance->isPreFlightCheckComplete())
    {
-
-
-       pGameStateInstance->getProjectile()->initializeProjectileLaunchState(pGameStateInstance->getLaunchAngle(), pGameStateInstance->getptHowitzer());
-     
-       startSim = false;
-//       startSim = false; // Do this function once ssytem, this will need to get move into the game state class at some point
-       tempLaunchPRohectile = true;
-       cout << "Sim has started" << endl;
+       pGameStateInstance->deactivatePreFlightCheck();
+       pGameStateInstance->activateSimulation();
    }
 
 
-   if (tempLaunchPRohectile == true)
+   if (pGameStateInstance->isSimActive())
    {
-       pGameStateInstance->gameStateTickProgression();
+       pGameStateInstance->activeSimulationTickProgression();
    }
 
 
-    
+  
    pGameStateInstance->displayScreen();
  
 
