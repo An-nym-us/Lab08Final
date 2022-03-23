@@ -38,7 +38,7 @@ public:
 
 
     double angle;
-    double time;                   // amount of time since the last firing
+                   // amount of time since the last firing
 
 
 
@@ -48,20 +48,20 @@ public:
     void GameStateTickProgress()
     {
 
-
         if (ground.hitTarget(this->getProjectile()->getCurrentPointLocation()))
         {
-            //cout << "did i hit ground palteform" << endl;
-        }
-
-        //cout << "Elevation " << ground.getElevationMeters(this->getProjectile()->getCurrentPointLocation()) << endl;
-       //cout << " Prjectil elocateion " << this->getProjectile()->getCurrentLocationY() << endl;
-
-        if (ground.getElevationMeters(this->getProjectile()->getCurrentPointLocation()) > this->getProjectile()->getCurrentLocationY())
-        {
-            //cout << "end game" << endl;
+            cout << " YOU WIN!" << endl;
             return;
         }
+
+        /* Check if the projecile is below the minimum elevationof the ground. if it is below the ground elevation then you loose*/
+        if (ground.getElevationMeters(this->getProjectile()->getCurrentPointLocation()) > this->getProjectile()->getCurrentLocationY())
+        {
+            cout << "YOU LOSE  :(" << endl;
+            return;
+        }
+
+
 
 
         for (int i = 0; i < 20; i++)
@@ -70,6 +70,7 @@ public:
             double y = this->projectilePath->getPixelsY();
         }
 
+        this->advanceTimer();
         this->getProjectile()->applyPhysics();
 
 
@@ -89,12 +90,17 @@ public:
     Position getptUpperRight() { return ptUpperRight; }
 
 
+    void advanceTimer() { time += .5; }
+    void resetTimer() { time = 0; }
+    double getTimer() { return time; }
 
 
+
+    /* No worky*/
     double getLaunchAngle() { return launchAngle; }
     void addLaunchAngle() { this->launchAngle += 0.05; }
     void subtractLaunchAngle() { this->launchAngle -= 0.05; }    // angle of the howitzer };
-
+        /* No worky*/
 
 
 private:
@@ -104,6 +110,6 @@ private:
     Position  ptUpperRight;        // size of the screen
     Ground ground;
     double launchAngle;                  // angle of the howitzer 
-
+    double time;
 
 };

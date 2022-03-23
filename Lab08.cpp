@@ -25,6 +25,54 @@ using namespace std;
 /*************************************************************************
  * GameState
  *************************************************************************/
+//class GameState
+//{
+//public:
+//   GameState(Position ptUpperRight) :
+//      ptUpperRight(ptUpperRight),
+//      ground(ptUpperRight),
+//      time(0.0),
+//      angle(0.0)
+//   {
+//      ptHowitzer.setPixelsX(Position(ptUpperRight).getPixelsX() / 2.0);
+//      ptHowitzer.setPixelsY(Position(ptUpperRight).getPixelsY() / 4.0  );
+//
+//      ground.reset(ptHowitzer);
+//
+//      for (int i = 0; i < 20; i++)
+//      {
+//
+//         projectilePath[i].setPixelsX((double)i * 2.0);
+//         projectilePath[i].setPixelsY((double)i * 2.0);
+//
+//         projectilePath[i].setPixelsY(ptUpperRight.getPixelsY() / 1.5);
+//
+//      }
+//   }
+//
+//   Ground ground;                 // the ground
+//   Position  projectilePath[20];  // path of the projectile
+//   Position  ptHowitzer;          // location of the howitzer
+//   Position  ptUpperRight;        // size of the screen
+//   double angle;                  // angle of the howitzer
+//   double time;                   // amount of time since the last firing
+//};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*************************************
  * All the interesting work happens here, when
  * I get called back from OpenGL to draw a frame.
@@ -69,7 +117,7 @@ void callBack(const Interface* pUI, void* p)
    // fire that gun
    if (pUI->isSpace())
    {
-       pGameStateInstance->time = 0.0;
+       pGameStateInstance->resetTimer();
        startSim = true;
        
    }
@@ -80,14 +128,13 @@ void callBack(const Interface* pUI, void* p)
    //
 
 
-//    double targetLocation = pGameStateInstance -> getGround().getTarget().getMetersX();
-//    double targetLocationY = pGameStateInstance -> getGround().getTarget().getMetersY();
-//    double xPath = pGameStateInstance -> getProjectile() -> getCurrentLocationX();
-//    double yPath = pGameStateInstance -> getProjectile() -> getCurrentLocationY();
+    double targetLocation = pGameStateInstance -> getGround().getTarget().getMetersX();
+    double targetLocationY = pGameStateInstance -> getGround().getTarget().getMetersY();
+    double xPath = pGameStateInstance -> getProjectile() -> getCurrentLocationX();
+    double yPath = pGameStateInstance -> getProjectile() -> getCurrentLocationY();
     
     // advance time by half a second.
 
-    pGameStateInstance->time += 0.5;
   
 //    cout << targetLocation << " ," << targetLocationY<< " These are my paths::" << endl;
  
@@ -109,34 +156,10 @@ void callBack(const Interface* pUI, void* p)
    if (tempLaunchPRohectile == true)
    {
        pGameStateInstance->GameStateTickProgress();
-<<<<<<< HEAD
-}
-
-//    for(int i=0; i < 20; i++){
-//
-////        cout << pGameStateInstance-> projectilePath[i].getPixelsX() << ", here" << pGameStateInstance-> projectilePath[i].getPixelsY() << endl;
-//        double x = pGameStateInstance -> projectilePath[i].getPixelsX();
-//        x-=1.0;
-//        if (x <0)
-//            x = pGameStateInstance-> getptHowitzer().getPixelsX();
-//        pGameStateInstance-> projectilePath[i].setPixelsX(x);
-//    }
-//    for(int i=0; i < 20; i++)
-//    {
-//        double x = pGameStateInstance -> projectilePath->getPixelsX();
-//        double y = pGameStateInstance->projectilePath->getPixelsY();
-//        pGameStateInstance-> projectilePath[i].setPixelsX(x);
-//        pGameStateInstance-> projectilePath[i].setPixelsY(y);
-//    }
-=======
    }
 
-//    if((xPath>=0 && xPath == targetLocation) && (yPath>=0 && yPath == targetLocationY))
-//    {
-//        exit(0);
-//    }
+
     
->>>>>>> parent of d297ffc (877)
 
    //
    // draw everything
@@ -148,53 +171,31 @@ void callBack(const Interface* pUI, void* p)
    pGameStateInstance->getGround().draw(gout);
 
    // draw the howitzer
-   gout.drawHowitzer(pGameStateInstance->getptHowitzer(), pGameStateInstance->angle, pGameStateInstance->time);
+   gout.drawHowitzer(pGameStateInstance->getptHowitzer(), pGameStateInstance->angle, pGameStateInstance->getTimer());
 
    // draw the projectile
    for (int i = 0; i < 20; i++)
-   {
-       cout << pGameStateInstance-> projectilePath[i] << endl;
       gout.drawProjectile(pGameStateInstance->projectilePath[i], 0.5 * (double)i);
 
-<<<<<<< HEAD
-   }
-
-   // draw some text on the screen
-    pGameStateInstance -> onScreenStats();
-  
 
 
-}
-
-
-void GameState:: onScreenStats()
-{
-    ogstream gout;
-    gout.setf(ios::fixed | ios::showpoint);
-    gout.precision(1);
-    gout.setPosition(Position(18000.0,18000.0));
-    
-    double distance =this->getProjectile()->getCurrentLocationX() - this->getptHowitzer().getMetersX();
-    gout << "Hang Time: "
-     << this->getTimer() << "s" << endl;
-    gout << "\tAltitude: "
-     << this->getProjectile()->getCurrentLocationY() << " meters" << endl;
-    gout << "\tSpeed: "
-     << this->getProjectile()->getVelocityInstance().getSpeed() << " m/s" << endl;
-    gout << "\tDistance: "
-     <<  (distance < 0.0 ? 0.0 : distance) << " meters" << endl;
-    gout << "\tHowitzer Angle: "
-     << (this->angle * (180 / 3.1415927)) << " Degrees" << endl;
-=======
    // draw some text on the screen
    gout.setf(ios::fixed | ios::showpoint);
    gout.precision(1);
-   gout << "Time since the bullet was fired: "
-      << pGameStateInstance->time << "s\n";
->>>>>>> parent of d297ffc (877)
+   gout << "Hang Time: "
+      << pGameStateInstance->getTimer() << "s";
+   gout << "\tAltitude: "
+       << pGameStateInstance->getProjectile()->getCurrentLocationY() << " meters";
+   gout << "\tSpeed: "
+       << pGameStateInstance->getProjectile()->getVelocityInstance().getSpeed() << " m/s";
+   gout << "\tDistance: "
+       <<  (pGameStateInstance->getProjectile()->getCurrentLocationX() - pGameStateInstance->getptHowitzer().getMetersX()) << " meters\n";
+   gout << "\tHowitzer Angle: "
+       << (pGameStateInstance->angle * (180 / 3.1415927)) << " Degrees";
+
+
+
 }
-
-
 
 double Position::metersFromPixels = 40.0;
 
