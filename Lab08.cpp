@@ -69,7 +69,7 @@ void callBack(const Interface* pUI, void* p)
    // fire that gun
    if (pUI->isSpace())
    {
-       pGameStateInstance->resetTimer();
+       pGameStateInstance->time = 0.0;
        startSim = true;
        
    }
@@ -87,6 +87,7 @@ void callBack(const Interface* pUI, void* p)
     
     // advance time by half a second.
 
+    pGameStateInstance->time += 0.5;
   
 //    cout << targetLocation << " ," << targetLocationY<< " These are my paths::" << endl;
  
@@ -108,6 +109,7 @@ void callBack(const Interface* pUI, void* p)
    if (tempLaunchPRohectile == true)
    {
        pGameStateInstance->GameStateTickProgress();
+<<<<<<< HEAD
 }
 
 //    for(int i=0; i < 20; i++){
@@ -126,6 +128,15 @@ void callBack(const Interface* pUI, void* p)
 //        pGameStateInstance-> projectilePath[i].setPixelsX(x);
 //        pGameStateInstance-> projectilePath[i].setPixelsY(y);
 //    }
+=======
+   }
+
+//    if((xPath>=0 && xPath == targetLocation) && (yPath>=0 && yPath == targetLocationY))
+//    {
+//        exit(0);
+//    }
+    
+>>>>>>> parent of d297ffc (877)
 
    //
    // draw everything
@@ -137,7 +148,7 @@ void callBack(const Interface* pUI, void* p)
    pGameStateInstance->getGround().draw(gout);
 
    // draw the howitzer
-   gout.drawHowitzer(pGameStateInstance->getptHowitzer(), pGameStateInstance->angle, pGameStateInstance->getTimer());
+   gout.drawHowitzer(pGameStateInstance->getptHowitzer(), pGameStateInstance->angle, pGameStateInstance->time);
 
    // draw the projectile
    for (int i = 0; i < 20; i++)
@@ -145,6 +156,7 @@ void callBack(const Interface* pUI, void* p)
        cout << pGameStateInstance-> projectilePath[i] << endl;
       gout.drawProjectile(pGameStateInstance->projectilePath[i], 0.5 * (double)i);
 
+<<<<<<< HEAD
    }
 
    // draw some text on the screen
@@ -173,6 +185,13 @@ void GameState:: onScreenStats()
      <<  (distance < 0.0 ? 0.0 : distance) << " meters" << endl;
     gout << "\tHowitzer Angle: "
      << (this->angle * (180 / 3.1415927)) << " Degrees" << endl;
+=======
+   // draw some text on the screen
+   gout.setf(ios::fixed | ios::showpoint);
+   gout.precision(1);
+   gout << "Time since the bullet was fired: "
+      << pGameStateInstance->time << "s\n";
+>>>>>>> parent of d297ffc (877)
 }
 
 
