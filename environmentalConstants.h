@@ -8,7 +8,7 @@ using namespace std;
 
 class EnvironmentalConstants
 {
-	friend class TestEnvironmentalConstants;
+
 
 
 public:
@@ -30,6 +30,8 @@ private:
 
 	vector<double> findLowerBound(double inputValue, vector<vector<double>> dataTable);
 	vector<double> findUpperBound(double inputValue, vector<vector<double>> datatTable);
+
+
 
 	vector<vector<double>> machDragCoeffiecientDataTable =
 	{

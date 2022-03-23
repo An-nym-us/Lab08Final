@@ -1,3 +1,14 @@
+/***********************************************************************
+ * Source File:
+ *    
+ * Author:
+ *    
+ * Summary:
+ *    
+ ************************************************************************/
+
+
+
 #pragma once
 #include <cassert>      // for ASSERT
 #include "uiInteract.h" // for INTERFACE
@@ -15,74 +26,15 @@ public:
         ptUpperRight(ptUpperRight),
         ground(ptUpperRight),
         time(0.0),
-        angle(0.0)
+        launchAngle(0.0)
     {
         ptHowitzer.setPixelsX(Position(ptUpperRight).getPixelsX() / 2.0);
         ptHowitzer.setPixelsY(Position(ptUpperRight).getPixelsY() / 4.0);
-
         ground.reset(ptHowitzer);
-
-
-
-        for (int i = 0; i < 20; i++)
-        {
-            {
-                projectilePath[i].setPixelsX((double)i * 2.0);
-                projectilePath[i].setPixelsY((double)i * 2.0);
-                projectilePath[i].setPixelsY(ptUpperRight.getPixelsY() / 1.5);
-            }
-        }
     }
-    // the ground
 
 
 
-    double angle;
-                   // amount of time since the last firing
-
-
-
-
-
-
-    void GameStateTickProgress()
-    {
-
-        if (ground.hitTarget(this->getProjectile()->getCurrentPointLocation()))
-        {
-            cout << " YOU WIN!" << endl;
-            return;
-        }
-
-        /* Check if the projecile is below the minimum elevationof the ground. if it is below the ground elevation then you loose*/
-        if (ground.getElevationMeters(this->getProjectile()->getCurrentPointLocation()) > this->getProjectile()->getCurrentLocationY())
-        {
-            cout << "YOU LOSE  :(" << endl;
-            return;
-        }
-
-
-
-
-        for (int i = 0; i < 20; i++)
-        {
-            double x = this->projectilePath->getPixelsX();
-            double y = this->projectilePath->getPixelsY();
-        }
-
-        this->advanceTimer();
-        this->getProjectile()->applyPhysics();
-
-
-        this->projectilePath->setMetersY(this->getProjectile()->getCurrentLocationY());
-        this->projectilePath->setMetersX(this->getProjectile()->getCurrentLocationX());
-    };
-
-
-
-
-
-    Position  projectilePath[20];  // path of the projectile
 
     Projectile* getProjectile() { return projectileInstance; }
     Ground getGround() { return ground; }
@@ -90,17 +42,25 @@ public:
     Position getptUpperRight() { return ptUpperRight; }
 
 
+    void gameStateTickProgression();
+    void displayScreen();
+
+    /* current timer of the hang time of the proejctile  */
     void advanceTimer() { time += .5; }
     void resetTimer() { time = 0; }
     double getTimer() { return time; }
 
 
 
-    /* No worky*/
+
+
+    /* Adjust and return projectile launch angle */
     double getLaunchAngle() { return launchAngle; }
-    void addLaunchAngle() { this->launchAngle += 0.05; }
-    void subtractLaunchAngle() { this->launchAngle -= 0.05; }    // angle of the howitzer };
-        /* No worky*/
+    void advanceLaunchAngleFullStep() { this->launchAngle += 0.03; }
+    void decrementLaunchAngleFullStep() { this->launchAngle -= 0.03; }    // angle of the howitzer };
+    void advanceLaunchAngleHalfStep() { this->launchAngle +=     this->launchAngle >= 0 ? -0.002 : 0.002; }
+    void decrementLaunchAngleHalfStep() { this->launchAngle +=   this->launchAngle >= 0 ? 0.002 : -0.002; }
+
 
 
 private:
@@ -111,5 +71,7 @@ private:
     Ground ground;
     double launchAngle;                  // angle of the howitzer 
     double time;
+
+
 
 };

@@ -21,9 +21,6 @@
     <ClCompile Include="position.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="test.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="uiDraw.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -48,18 +45,15 @@
     <ClCompile Include="acceleration .cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="gameState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ground.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="position.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="test.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="testPosition.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="uiDraw.h">
@@ -71,19 +65,10 @@
     <ClInclude Include="environment.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="testEnvironment.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="environmentalConstants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="testEnvironmentalConstants.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="velocity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="testVelocity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="projectile.h">
@@ -98,5 +83,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

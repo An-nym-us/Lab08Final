@@ -6,32 +6,56 @@
 
 
 
+
+
+void Projectile::refreshProjectileTail()
+{
+	projectileTail.insert(projectileTail.begin(), this->getCurrentPointLocation());
+
+	if (projectileTail.size() > 19)
+	{
+		projectileTail.pop_back();
+	}
+
+
+}
+
+
+Position& Projectile::getProjectileTail(double j)
+{
+	for (int i = 0; i < 20; i++)
+	{
+		if (i == j && i < projectileTail.size())
+		{
+			return projectileTail[i];
+		}
+	}
+
+
+}
+
+
+
 /*
 * all init launch data includding velocity, acceration, and direction.
 */
-void Projectile::applyLaunchPhysics(double angle)
+void Projectile::initializeProjectileLaunchState(double launchAngle, Position const&  launchLocation ) 
 {
-	cout << "Lanuch physics called" << endl;
-
-	cout << angle << "is convert " << endl;
+	this->setCurrentLocationX(launchLocation.getMetersX());
+	this->setCurrentLocationY(launchLocation.getMetersY());
 
 	/*****************************************************************
 	* The reason why we have the get initl velocity inside the acceleration
 	* Instanace is because the equation for acceleration is (acc = velocity / time)
-	* The intil accelerationof the projectile is intial velocity / 1.
+	* The intil acceleration of the projectile is intial velocity / 1.
 	*****************************************************************/
-	accelerationInstance->setDDx(sin(angle) * getInitVelocity() / 1);
-	accelerationInstance->setDDy(cos(angle) * getInitVelocity() / 1);
-
-	velocityInstance->setDx(sin(angle) * getInitVelocity());
-	velocityInstance->setDy(cos(angle) * getInitVelocity());
-
-	
 
 
-	cout << "launch Angle is: " << angle << endl;
-	cout << "Set acceleration is: " << accelerationInstance->getDDy() << endl;
-	cout << "\n";
+	accelerationInstance->setDDx(sin(launchAngle) * PROJECTILEINITVELOCITY / 1);
+	accelerationInstance->setDDy(cos(launchAngle) * PROJECTILEINITVELOCITY / 1);
+
+	velocityInstance->setDx(sin(launchAngle) * PROJECTILEINITVELOCITY);
+	velocityInstance->setDy(cos(launchAngle) * PROJECTILEINITVELOCITY);
 
 }
 
@@ -42,7 +66,6 @@ void Projectile::applyLaunchPhysics(double angle)
 void Projectile::applyPhysics()
 {
 	Environment().applyGravity(accelerationInstance);  // The gravity system is working as intended. As long as the class and input vlaues dont change this system works great.
-
 	Environment().applyIniteria(accelerationInstance, velocityInstance, currentLocation);
 
 
@@ -51,7 +74,7 @@ void Projectile::applyPhysics()
 	passed into the methods will be changed and alter with in each of the methods
 	************************************************************/
 
-	Environment().applyDrag(accelerationInstance, velocityInstance, currentLocation, getMass(), getRadius());
+	Environment().applyDrag(accelerationInstance, velocityInstance, currentLocation, PROJECTILEINITMASS, PROJECTILERADIUS);
 
 
 }

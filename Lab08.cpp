@@ -91,60 +91,43 @@ void callBack(const Interface* pUI, void* p)
    // the first step is to cast the void pointer into a game object. This
    // is the first step of every single callback function in OpenGL.
     
-
-
    GameState* pGameStateInstance = (GameState*)p;
 
-
+   
    //
    // accept input
    //
 
    // move a large amount
    if (pUI->isRight())
-       //pGameStateInstance->addLaunchAngle();
-      pGameStateInstance->angle += 0.03;
+       pGameStateInstance->advanceLaunchAngleFullStep();
    if (pUI->isLeft())
-       //pGameStateInstance->subtractLaunchAngle();
-      pGameStateInstance->angle -= 0.03;
+       pGameStateInstance->decrementLaunchAngleFullStep();
 
    // move by a little
    if (pUI->isUp())
-      pGameStateInstance->angle += (pGameStateInstance->angle >= 0 ? -0.002 : 0.002);
+       pGameStateInstance->advanceLaunchAngleHalfStep();
    if (pUI->isDown())
-      pGameStateInstance->angle += (pGameStateInstance->angle >= 0 ? 0.002 : -0.002);
+       pGameStateInstance->decrementLaunchAngleHalfStep();
 
    // fire that gun
    if (pUI->isSpace())
    {
        pGameStateInstance->resetTimer();
        startSim = true;
-       
    }
 
 
-   //
-   // perform all the game logic
-   //
-
-
-    double targetLocation = pGameStateInstance -> getGround().getTarget().getMetersX();
-    double targetLocationY = pGameStateInstance -> getGround().getTarget().getMetersY();
-    double xPath = pGameStateInstance -> getProjectile() -> getCurrentLocationX();
-    double yPath = pGameStateInstance -> getProjectile() -> getCurrentLocationY();
-    
-    // advance time by half a second.
-
-  
-//    cout << targetLocation << " ," << targetLocationY<< " These are my paths::" << endl;
  
-   // move the projectile across the screen
+
+
+ 
+
    if (startSim == true)
    {
-    
-       pGameStateInstance->getProjectile()->setCurrentLocationX(pGameStateInstance->getptHowitzer().getMetersX());
-       pGameStateInstance->getProjectile()->setCurrentLocationY(pGameStateInstance->getptHowitzer().getMetersY());
-       pGameStateInstance->getProjectile()->applyLaunchPhysics(pGameStateInstance->angle);
+
+
+       pGameStateInstance->getProjectile()->initializeProjectileLaunchState(pGameStateInstance->getLaunchAngle(), pGameStateInstance->getptHowitzer());
      
        startSim = false;
 //       startSim = false; // Do this function once ssytem, this will need to get move into the game state class at some point
@@ -155,43 +138,14 @@ void callBack(const Interface* pUI, void* p)
 
    if (tempLaunchPRohectile == true)
    {
-       pGameStateInstance->GameStateTickProgress();
+       pGameStateInstance->gameStateTickProgression();
    }
 
 
     
+   pGameStateInstance->displayScreen();
+ 
 
-   //
-   // draw everything
-   //
-
-   ogstream gout(Position(10.0, pGameStateInstance->getptUpperRight().getPixelsY() - 20.0));
-
-   // draw the ground first
-   pGameStateInstance->getGround().draw(gout);
-
-   // draw the howitzer
-   gout.drawHowitzer(pGameStateInstance->getptHowitzer(), pGameStateInstance->angle, pGameStateInstance->getTimer());
-
-   // draw the projectile
-   for (int i = 0; i < 20; i++)
-      gout.drawProjectile(pGameStateInstance->projectilePath[i], 0.5 * (double)i);
-
-
-
-   // draw some text on the screen
-   gout.setf(ios::fixed | ios::showpoint);
-   gout.precision(1);
-   gout << "Hang Time: "
-      << pGameStateInstance->getTimer() << "s";
-   gout << "\tAltitude: "
-       << pGameStateInstance->getProjectile()->getCurrentLocationY() << " meters";
-   gout << "\tSpeed: "
-       << pGameStateInstance->getProjectile()->getVelocityInstance().getSpeed() << " m/s";
-   gout << "\tDistance: "
-       <<  (pGameStateInstance->getProjectile()->getCurrentLocationX() - pGameStateInstance->getptHowitzer().getMetersX()) << " meters\n";
-   gout << "\tHowitzer Angle: "
-       << (pGameStateInstance->angle * (180 / 3.1415927)) << " Degrees";
 
 
 

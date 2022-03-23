@@ -5,23 +5,32 @@
 #include "velocity.h"
 #include "acceleration.h"
 #include "environment.h"
+#include <vector>
+
+
+
 
 class Projectile
 {
 public:
-    Projectile()
+    Projectile() 
     {
+        currentLocation->setMetersX(0);
+        currentLocation->setMetersY(0);
+        projectileTail.resize(20);
+        for (int i = 0; i < 20; i++)
+        {
+            projectileTail.at(i) = *currentLocation;
+        }
     }
 
 
 
 
 
-
-
-
     void applyPhysics();
-    void applyLaunchPhysics(double angle);
+    void initializeProjectileLaunchState(double launchAngle, Position const& launchLocation);
+    void refreshProjectileTail();
 
 
     double getCurrentLocationX();
@@ -30,30 +39,25 @@ public:
     void setCurrentLocationY(double Y);
 
 
-    /* We can remvoe this from here This is to stay in the callback or placed in the gamestate*/
-    //void draw(ogstream &gout) const;
-    //    void advance(double time);
 
-
+    Position& getProjectileTail(double i);
     Position getCurrentPointLocation() { return *currentLocation; }
     Velocity getVelocityInstance() { return *velocityInstance; }
 
-    /*  We can keep these for now, But i dont believe that we will need these*/
-    double getMass() { return MASS; }
-    double getRadius() { return RADIUS;  }
-    double getInitVelocity() { return INITVELOCITY; }
+
 
     
 
-    
+
 private:
-    const double MASS = 46.7; // In KG
-    const double RADIUS = .15489 / 2.00; // In meters
-    const double INITVELOCITY = 827;
+    const double PROJECTILEINITMASS = 46.7; // In KG
+    const double PROJECTILERADIUS = .15489 / 2.00; // In meters
+    const double PROJECTILEINITVELOCITY = 827;
 
+    
+    vector<Position> projectileTail;
 
-
-
+    //Position projectileTail[20];
 
     //These classes will never be destroy. all information contaied in them are safe to access and chagne at any time
     Position* currentLocation = new Position(); // the current loction of the object in world space.
