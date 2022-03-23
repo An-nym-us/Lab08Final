@@ -11,13 +11,24 @@ class Projectile
 public:
     Projectile()
     {
+        //currentLocation.setPixelsX(0);
+        //currentLocation.setPixelsY(0);
     }
 
 
 
 
 
+    void noDDestroy()
+    {
+        //testing = testing + 1;
+        ////cout << currentLocation.getMetersX() << endl;
+        //cout << testing << endl;
+        ////currentLocation.addMetersX(-1);
+        ////currentLocation.addMetersY(-1);
 
+
+    }
 
 
     void applyPhysics();
@@ -30,12 +41,25 @@ public:
     void setCurrentLocationY(double Y);
 
 
+
+
+
+
+
     /* We can remvoe this from here This is to stay in the callback or placed in the gamestate*/
     //void draw(ogstream &gout) const;
     //    void advance(double time);
 
 
     Position getCurrentPointLocation() { return *currentLocation; }
+    //bool flying();
+    //double getAltitude();
+
+
+    double getFlightDistance();
+    double getSpeed();
+    double getCurrentTime();
+
 
 
     /*  We can keep these for now, But i dont believe that we will need these*/

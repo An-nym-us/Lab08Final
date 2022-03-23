@@ -104,6 +104,7 @@ public:
     Position getptUpperRight() { return ptUpperRight; }
 
 
+<<<<<<< HEAD
     void advanceTimer() { time += .5; }
     void resetTimer() { time = 0; }
     double getTimer() { return time; }
@@ -127,3 +128,9 @@ private:
     double time;
 
 };
+=======
+//bool Projectile:: flying()
+//{
+//    return false;
+//}
+>>>>>>> parent of bf7a59d (777)

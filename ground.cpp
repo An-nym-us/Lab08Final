@@ -155,24 +155,22 @@ void Ground::draw(ogstream & gout) const
 
 
 
-bool Ground:: hitTarget(const Position &ProjectilePosition)const
+bool Ground:: hitTarget(const Position &post)const
 {
-
-
-    /* This will see ofthe projectile is within a range of the width of the center ofthe cube */
-    if (!  (((getTarget().getMetersX() - 200) < ProjectilePosition.getMetersX()) && ProjectilePosition.getMetersX() < getTarget().getMetersX() +200))
-    {
-        
+    cout << getElevationMeters(post) << " Y-axis here " << endl;
+    cout << getTarget().getMetersY() << " target here " << endl;
+    if(getElevationMeters(post) > 1.0)
         return false;
-    }
-
-    /* This will see ifhte projectile is below the height ofhte cube */
-    if (! (ProjectilePosition.getMetersY() < getTarget().getMetersY() ))
-    {
-
+    
+    if(getElevationMeters(post) < 0.0)
         return false;
-    }
-
+    
+    if(post.getMetersX() < getTarget().getMetersX())
+        return false;
+    
+    if(post.getMetersY() > getTarget().getMetersY())
+        return false;
+    
     return true;
 }
 
