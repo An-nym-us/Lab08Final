@@ -117,6 +117,8 @@ void callBack(const Interface* pUI, void* p)
    }
 
 
+
+
    if (pGameStateInstance->isPreFlightCheckComplete())
    {
        pGameStateInstance->deactivatePreFlightCheck();
@@ -130,8 +132,8 @@ void callBack(const Interface* pUI, void* p)
    }
 
 
-  
    pGameStateInstance->displayScreen();
+
  
 
 

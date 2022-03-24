@@ -25,7 +25,6 @@ class Projectile
 public:
     Projectile() 
     {
-
         currentLocation->setMetersX(0);
         currentLocation->setMetersY(0);
         projectileTail.resize(20);

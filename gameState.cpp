@@ -7,7 +7,7 @@
  *************************************************************************/
 void GameState::activeSimulationTickProgression()
 {
-    this->gameStateProjectileStatus();
+
     this->advanceTimer();
     this->getProjectile()->applyPhysics();
     this->getProjectile()->refreshProjectileTail();
@@ -25,6 +25,7 @@ void GameState::gameStateProjectileStatus()
     if (ground.hitTarget(this->getProjectile()->getCurrentPointLocation()))
     {
         gout << "Target Hit!!!";
+        this->deactivateSimulation();
         return;
     }
 
@@ -32,6 +33,7 @@ void GameState::gameStateProjectileStatus()
     if (ground.getElevationMeters(this->getProjectile()->getCurrentPointLocation()) > this->getProjectile()->getLocationY())
     {
         gout << "Target Missed";
+        this->deactivateSimulation();
         return;
     }
 }
@@ -73,8 +75,8 @@ void GameState::displayScreen()
         << (this->getLaunchAngle() * (180 / 3.1415927)) << " Degrees";
 
 
-
-
+    /* draw win/lose text */
+    this->gameStateProjectileStatus();
 
     // draw the ground first
     this->getGround().draw(gout);
@@ -86,7 +88,7 @@ void GameState::displayScreen()
     // draw the projectile
     for (int i = 0; i <20; i++)
     {  
-            gout.drawProjectile(this->getProjectile()->getProjectileTail(i), i *.5);        
+        gout.drawProjectile(this->getProjectile()->getProjectileTail(i), i *.5);        
     }
 
 

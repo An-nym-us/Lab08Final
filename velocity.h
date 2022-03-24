@@ -1,3 +1,11 @@
+/***********************************************************************
+ * Source File:
+ *    Point : The representation of a velocty on the screen
+ * Author:
+ *         Jonathan Gunderson and Sulav Dahal
+ * Summary:
+ *    Everything we need to know about a velocity
+ ************************************************************************/
 #pragma once
 
 #include <iostream>

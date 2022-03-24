@@ -23,7 +23,7 @@ public:
     GameState(Position ptUpperRight) :
         ptUpperRight(ptUpperRight),
         ground(ptUpperRight),
-        time(0.0),
+        time(7.77),
         launchAngle(0.0)
     {
         ptHowitzer.setPixelsX(Position(ptUpperRight).getPixelsX() / 2.0);
@@ -82,7 +82,6 @@ private:
     Ground ground;
     double launchAngle;                  // angle of the howitzer 
     double time;
-
     bool isSimulationActive;
     bool simulationPreFlightcheck;
 
