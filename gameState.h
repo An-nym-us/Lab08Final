@@ -16,29 +16,26 @@
 #include <iostream>
 #include <cmath>
 #include "projectile.h"
+#include "howitzer.h"
 
 class GameState
 {
 public:
-    GameState(Position ptUpperRight) :
-        ptUpperRight(ptUpperRight),
-        ground(ptUpperRight),
-        time(7.77),
-        launchAngle(0.0)
-    {
-        ptHowitzer.setPixelsX(Position(ptUpperRight).getPixelsX() / 2.0);
-        ptHowitzer.setPixelsY(Position(ptUpperRight).getPixelsY() / 4.0);
-        ground.reset(ptHowitzer);
-        isSimulationActive = false;
-        simulationPreFlightcheck = false;
-    }
+    //GameState(Position ptUpperRight);
+    GameState(Position ptUpperRight)
+            :ptUpperRight(ptUpperRight),    ground(ptUpperRight),    time(7.77)//, *howitzerInstance(ptUpperRight)
+        {
+            howitzerInstance = new Howitzer(ptUpperRight);
+            isSimulationActive = false;
+            simulationPreFlightcheck = false;
+        }
 
 
 
 
     Projectile* getProjectile() { return projectileInstance; }
     Ground getGround() { return ground; }
-    Position getptHowitzer() { return ptHowitzer; }
+    Howitzer* getHowitzer() { return howitzerInstance; }
     Position getptUpperRight() { return ptUpperRight; }
 
 
@@ -61,26 +58,22 @@ public:
 
     /* Pre flight check status before simulation is activated */
     bool isPreFlightCheckComplete() { return simulationPreFlightcheck; }
-    void activatePreFlightCheck();
+    //void activatePreFlightCheck();
     void deactivatePreFlightCheck() { simulationPreFlightcheck = false; }
 
 
     /* Adjust and return projectile launch angle */
-    double getLaunchAngle() { return launchAngle; }
-    void advanceLaunchAngleFullStep() { this->launchAngle += 0.03; }
-    void decrementLaunchAngleFullStep() { this->launchAngle -= 0.03; }    // angle of the howitzer };
-    void advanceLaunchAngleHalfStep() { this->launchAngle +=     this->launchAngle >= 0 ? -0.002 : 0.002; }
-    void decrementLaunchAngleHalfStep() { this->launchAngle +=   this->launchAngle >= 0 ? 0.002 : -0.002; }
+
 
 
 
 private:
 
     Projectile* projectileInstance = new Projectile();
-    Position  ptHowitzer;          // location of the howitzer
+    Howitzer* howitzerInstance; //= new Howitzer(ptUpperRight);
     Position  ptUpperRight;        // size of the screen
     Ground ground;
-    double launchAngle;                  // angle of the howitzer 
+               // angle of the howitzer 
     double time;
     bool isSimulationActive;
     bool simulationPreFlightcheck;

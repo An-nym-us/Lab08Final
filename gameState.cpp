@@ -1,6 +1,21 @@
 #include "gameState.h"
 
 
+
+/*************************************************************************
+ *
+ *
+ *************************************************************************/
+//GameState::GameState(Position ptUpperRight)
+//    :ptUpperRight(ptUpperRight),    ground(ptUpperRight),    time(7.77)
+//{
+//
+//    isSimulationActive = false;
+//    simulationPreFlightcheck = false;
+//}
+
+
+
 /*************************************************************************
  *
  *
@@ -42,12 +57,12 @@ void GameState::gameStateProjectileStatus()
 /*************************************************************************
  * Fire any pre flight simualtion like settign pre-flight launch information
  *************************************************************************/
-void GameState::activatePreFlightCheck() 
-{ 
-    resetTimer();
-    this->getProjectile()->initializeProjectileLaunchState(this->getLaunchAngle(), this->getptHowitzer());
-    simulationPreFlightcheck = true; 
-}
+//void GameState::activatePreFlightCheck() 
+//{ 
+//    resetTimer();
+//    this->getProjectile()->initializeProjectileLaunchState(this->getLaunchAngle(), this->getHowitzer());
+//    simulationPreFlightcheck = true; 
+//}
 
 
 
@@ -61,18 +76,18 @@ void GameState::displayScreen()
     ogstream gout(Position(21000.0, 19000));
 
 
-    gout.setf(ios::fixed | ios::showpoint);
-    gout.precision(1);
-    gout << "Hang Time: "
-        << this->getTimer() << "s\n";
-    gout << "Altitude: "
-        << this->getProjectile()->getLocationY() << " meters\n";
-    gout << "Speed: "
-        << this->getProjectile()->getVelocityInstance().getSpeed() << " m/s\n";
-    gout << "Distance: "
-        << (this->getProjectile()->getLocationX() - this->getptHowitzer().getMetersX()) << " meters\n";
-    gout << "Howitzer Angle: "
-        << (this->getLaunchAngle() * (180 / 3.1415927)) << " Degrees";
+    //gout.setf(ios::fixed | ios::showpoint);
+    //gout.precision(1);
+    //gout << "Hang Time: "
+    //    << this->getTimer() << "s\n";
+    //gout << "Altitude: "
+    //    << this->getProjectile()->getLocationY() << " meters\n";
+    //gout << "Speed: "
+    //    << this->getProjectile()->getVelocityInstance().getSpeed() << " m/s\n";
+    //gout << "Distance: "
+    //    << (this->getProjectile()->getLocationX() - this->getHowitzer().getMetersX()) << " meters\n";
+    //gout << "Howitzer Angle: "
+    //    << (this->getLaunchAngle() * (180 / 3.1415927)) << " Degrees";
 
 
     /* draw win/lose text */
@@ -82,7 +97,7 @@ void GameState::displayScreen()
     this->getGround().draw(gout);
 
     // draw the howitzer
-    gout.drawHowitzer(this->getptHowitzer(), this->getLaunchAngle(), this->getTimer());
+    gout.drawHowitzer(this->getHowitzer()->getptHowitzer(), this->getHowitzer()->getLaunchAngle(), this->getTimer());
 
 
     // draw the projectile

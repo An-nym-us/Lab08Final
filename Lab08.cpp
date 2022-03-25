@@ -100,36 +100,36 @@ void callBack(const Interface* pUI, void* p)
 
    // move a large amount
    if (pUI->isRight())
-       pGameStateInstance->advanceLaunchAngleFullStep();
+       pGameStateInstance->getHowitzer()->advanceLaunchAngleFullStep();
    if (pUI->isLeft())
-       pGameStateInstance->decrementLaunchAngleFullStep();
+       pGameStateInstance->getHowitzer()->decrementLaunchAngleFullStep();
 
    // move by a little
    if (pUI->isUp())
-       pGameStateInstance->advanceLaunchAngleHalfStep();
+       pGameStateInstance->getHowitzer()->advanceLaunchAngleHalfStep();
    if (pUI->isDown())
-       pGameStateInstance->decrementLaunchAngleHalfStep();
+       pGameStateInstance->getHowitzer()->decrementLaunchAngleHalfStep();
 
    // fire that gun
    if (pUI->isSpace())
    {
-       pGameStateInstance->activatePreFlightCheck();   
+       //pGameStateInstance->activatePreFlightCheck();   
    }
 
 
 
 
-   if (pGameStateInstance->isPreFlightCheckComplete())
-   {
-       pGameStateInstance->deactivatePreFlightCheck();
-       pGameStateInstance->activateSimulation();
-   }
+   //if (pGameStateInstance->isPreFlightCheckComplete())
+   //{
+   //    //pGameStateInstance->deactivatePreFlightCheck();
+   //    //pGameStateInstance->activateSimulation();
+   //}
 
 
-   if (pGameStateInstance->isSimActive())
-   {
-       pGameStateInstance->activeSimulationTickProgression();
-   }
+   //if (pGameStateInstance->isSimActive())
+   //{
+   //    //pGameStateInstance->activeSimulationTickProgression();
+   //}
 
 
    pGameStateInstance->displayScreen();
