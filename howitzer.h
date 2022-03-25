@@ -10,31 +10,20 @@ class Howitzer
 {
 public:
 
-    //Howitzer(Position ptUpperRight);
+    Howitzer(Position ptUpperRight);
 
-    /*Howitzer(Position ptUpperRight);*/
-    Howitzer(Position ptUpperRight) :ptUpperRight(ptUpperRight) , ground(ptUpperRight)
-    {
-
-        ptHowitzer.setPixelsX(Position(ptUpperRight).getPixelsX() / 2.0);
-        ptHowitzer.setPixelsY(Position(ptUpperRight).getPixelsY() / 4.0);
-        cout << ptHowitzer.getPixelsY() << endl;
-        ground.reset(ptHowitzer);
-        launchAngle = 0;
-        muzzleVelocity = 0;
-    }
-
-
-
-
-
-    Position getptHowitzer() { return ptHowitzer; }
     Ground getGround() { return ground; }
 
 
 
     // Get the Position of the Howitzer
+    Position getptHowitzer() { return ptHowitzer; }
     double getLaunchAngle() { return launchAngle; }
+    double getMuzzleVelocity() { return muzzleVelocity; }
+
+
+
+    double randomDoubleInRange();
     void advanceLaunchAngleFullStep() { launchAngle += 0.03; }
     void decrementLaunchAngleFullStep() { launchAngle -= 0.03; }    // angle of the howitzer };
     void advanceLaunchAngleHalfStep() { launchAngle += launchAngle >= 0 ? -0.002 : 0.002; }
@@ -50,4 +39,5 @@ private:
     Position  ptHowitzer;          // location of the howitzer
     Position ptUpperRight;
     double muzzleVelocity;
+
 };

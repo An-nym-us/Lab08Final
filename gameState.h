@@ -11,7 +11,6 @@
 #include <cassert>      // for ASSERT
 #include "uiInteract.h" // for INTERFACE
 #include "uiDraw.h"     // for RANDOM and DRAW*
-#include "ground.h"     // for GROUND
 #include "position.h"   // for POINT
 #include <iostream>
 #include <cmath>
@@ -21,20 +20,10 @@
 class GameState
 {
 public:
-    //GameState(Position ptUpperRight);
-    GameState(Position ptUpperRight)
-            :ptUpperRight(ptUpperRight),    ground(ptUpperRight),    time(7.77)//, *howitzerInstance(ptUpperRight)
-        {
-            howitzerInstance = new Howitzer(ptUpperRight);
-            isSimulationActive = false;
-            simulationPreFlightcheck = false;
-        }
-
-
+    GameState(Position ptUpperRight);
 
 
     Projectile* getProjectile() { return projectileInstance; }
-    Ground getGround() { return ground; }
     Howitzer* getHowitzer() { return howitzerInstance; }
     Position getptUpperRight() { return ptUpperRight; }
 
@@ -55,28 +44,27 @@ public:
     void activateSimulation() { isSimulationActive = true; }
     void deactivateSimulation() { isSimulationActive = false; }
 
-
     /* Pre flight check status before simulation is activated */
     bool isPreFlightCheckComplete() { return simulationPreFlightcheck; }
-    //void activatePreFlightCheck();
+    void activatePreFlightCheck();
     void deactivatePreFlightCheck() { simulationPreFlightcheck = false; }
 
-
-    /* Adjust and return projectile launch angle */
 
 
 
 
 private:
 
-    Projectile* projectileInstance = new Projectile();
-    Howitzer* howitzerInstance; //= new Howitzer(ptUpperRight);
-    Position  ptUpperRight;        // size of the screen
-    Ground ground;
-               // angle of the howitzer 
+    Projectile* projectileInstance;
+    Howitzer* howitzerInstance; 
+    const double muzzleVelocity = 0;
+
+    bool simulationPreFlightcheck;
+    Position  ptUpperRight;      
+
     double time;
     bool isSimulationActive;
-    bool simulationPreFlightcheck;
+
 
 
 };

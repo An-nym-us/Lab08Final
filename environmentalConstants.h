@@ -9,6 +9,9 @@
  *
  ************************************************************************/
 #pragma once
+#include "position.h"
+#include "acceleration.h"
+#include "velocity.h"
 #include <vector>
 
 using namespace std;
@@ -19,6 +22,9 @@ class EnvironmentalConstants
 public:
 	EnvironmentalConstants() {};
 
+	void applyGravity(Acceleration* currentAcceleration);
+	void applyIniteria(Acceleration* currentAcceleration, Velocity* currentVelocity, Position* currentProjectilePosition);
+	void applyDrag(Acceleration* currentAcceleration, Velocity* currentVelocity, Position* currentProjectilePosition, double mass, double radius);
 
 	double getDragCoefficientAtMach(double mach) const;
 	double getDensityAtAltitude(double altitude) const;
@@ -29,6 +35,9 @@ public:
 	double interpolation(vector<double> lowerBounds, vector<double> upperBounds, double targetValue) const;
 
 private:
+
+	double getForceOnSheelDueToDrag(double altitude, double velocity, double surfaceArea /*In meters*/); // Returned in Newtons
+	double getDragAccelerationAtPosition(Velocity& currentVelocity, Position& position, double mass, double radius); // Returned in M/S^2 (acceleration)
 
 	vector<double> findLowerBound(double inputValue, vector<vector<double>> dataTable) const; /* find lowest value inside the table that is closest to the asked value from the user */
 	vector<double> findUpperBound(double inputValue, vector<vector<double>> datatTable) const;/* find highest value inside the table that is closest to the asked value from the user */

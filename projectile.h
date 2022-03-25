@@ -9,13 +9,13 @@
  ************************************************************************/
 
 #pragma once
+#include "environmentalConstants.h"
 #include "position.h"
 #include <vector>
 #include "uiDraw.h"
 #include "velocity.h"
 #include "acceleration.h"
-#include "environment.h"
-#include <vector>
+
 
 
 
@@ -23,8 +23,9 @@
 class Projectile
 {
 public:
-    Projectile() 
+    Projectile(const double muzzleVelocity)
     {
+        this->muzzleVelocity = muzzleVelocity;
         currentLocation->setMetersX(0);
         currentLocation->setMetersY(0);
         projectileTail.resize(20);
@@ -42,16 +43,10 @@ public:
     void initializeProjectileLaunchState(double launchAngle, Position const& launchLocation);
     void refreshProjectileTail();
 
-
-    double getLocationX();
-    double getLocationY();
-    void setCurrentLocationX(double X);
-    void setCurrentLocationY(double Y);
-
-
+    double setMuzzleVelocity(double muzzleVelocity) { this->muzzleVelocity = muzzleVelocity; }
 
     Position& getProjectileTail(double i);
-    Position getCurrentPointLocation() { return *currentLocation; }
+    Position* getCurrentPointLocation() { return currentLocation; }
     Velocity getVelocityInstance() { return *velocityInstance; }
 
 
@@ -62,7 +57,7 @@ public:
 private:
     const double PROJECTILEINITMASS = 46.7; // In KG
     const double PROJECTILERADIUS = .15489 / 2.00; // In meters
-    const double PROJECTILEINITVELOCITY = 827;
+    double muzzleVelocity;
 
     
     vector<Position> projectileTail;

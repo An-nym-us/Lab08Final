@@ -6,13 +6,15 @@
  *
  *
  *************************************************************************/
-//GameState::GameState(Position ptUpperRight)
-//    :ptUpperRight(ptUpperRight),    ground(ptUpperRight),    time(7.77)
-//{
-//
-//    isSimulationActive = false;
-//    simulationPreFlightcheck = false;
-//}
+GameState::GameState(Position ptUpperRight)
+    :ptUpperRight(ptUpperRight), time(7.77)
+{
+    simulationPreFlightcheck = false;
+    howitzerInstance = new Howitzer(ptUpperRight);
+    projectileInstance = new Projectile(howitzerInstance->getMuzzleVelocity());
+    isSimulationActive = false;
+
+}
 
 
 
@@ -22,7 +24,6 @@
  *************************************************************************/
 void GameState::activeSimulationTickProgression()
 {
-
     this->advanceTimer();
     this->getProjectile()->applyPhysics();
     this->getProjectile()->refreshProjectileTail();
@@ -37,7 +38,7 @@ void GameState::gameStateProjectileStatus()
 {
     ogstream gout(Position(10000.0, 10000));
 
-    if (ground.hitTarget(this->getProjectile()->getCurrentPointLocation()))
+    if (this->getHowitzer()->getGround().hitTarget(*this->getProjectile()->getCurrentPointLocation()))
     {
         gout << "Target Hit!!!";
         this->deactivateSimulation();
@@ -45,7 +46,7 @@ void GameState::gameStateProjectileStatus()
     }
 
     /* Check if the projecile is below the minimum elevationof the ground. if it is below the ground elevation then you lose*/
-    if (ground.getElevationMeters(this->getProjectile()->getCurrentPointLocation()) > this->getProjectile()->getLocationY())
+    if (this->getHowitzer()->getGround().getElevationMeters(*this->getProjectile()->getCurrentPointLocation()) > this->getProjectile()->getCurrentPointLocation()->getMetersY())
     {
         gout << "Target Missed";
         this->deactivateSimulation();
@@ -57,12 +58,12 @@ void GameState::gameStateProjectileStatus()
 /*************************************************************************
  * Fire any pre flight simualtion like settign pre-flight launch information
  *************************************************************************/
-//void GameState::activatePreFlightCheck() 
-//{ 
-//    resetTimer();
-//    this->getProjectile()->initializeProjectileLaunchState(this->getLaunchAngle(), this->getHowitzer());
-//    simulationPreFlightcheck = true; 
-//}
+void GameState::activatePreFlightCheck()
+{
+    resetTimer();
+    this->getProjectile()->initializeProjectileLaunchState(this->getHowitzer()->getLaunchAngle(), this->getHowitzer()->getptHowitzer());
+    simulationPreFlightcheck = true;
+}
 
 
 
@@ -76,26 +77,28 @@ void GameState::displayScreen()
     ogstream gout(Position(21000.0, 19000));
 
 
-    //gout.setf(ios::fixed | ios::showpoint);
-    //gout.precision(1);
-    //gout << "Hang Time: "
-    //    << this->getTimer() << "s\n";
-    //gout << "Altitude: "
-    //    << this->getProjectile()->getLocationY() << " meters\n";
-    //gout << "Speed: "
-    //    << this->getProjectile()->getVelocityInstance().getSpeed() << " m/s\n";
-    //gout << "Distance: "
-    //    << (this->getProjectile()->getLocationX() - this->getHowitzer().getMetersX()) << " meters\n";
-    //gout << "Howitzer Angle: "
-    //    << (this->getLaunchAngle() * (180 / 3.1415927)) << " Degrees";
+    gout.setf(ios::fixed | ios::showpoint);
+    gout.precision(1);
+    gout << "Hang Time: "
+        << this->getTimer() << "s\n";
+    gout << "Altitude: "
+        << this->getProjectile()->getCurrentPointLocation()->getMetersY() << " meters\n";
+    gout << "Speed: "
+        << this->getProjectile()->getVelocityInstance().getSpeed() << " m/s\n";
+    gout << "Distance: "
+        <<  abs((this->getProjectile()->getCurrentPointLocation()->getMetersX() - this->getHowitzer()->getptHowitzer().getMetersX())) << " meters\n";
+    gout << "Howitzer Angle: "
+        << (this->getHowitzer()->getLaunchAngle() * (180 / 3.1415927)) << " Degrees";
 
 
     /* draw win/lose text */
     this->gameStateProjectileStatus();
 
     // draw the ground first
-    this->getGround().draw(gout);
+    
+    this->getHowitzer()->getGround().draw(gout);
 
+    
     // draw the howitzer
     gout.drawHowitzer(this->getHowitzer()->getptHowitzer(), this->getHowitzer()->getLaunchAngle(), this->getTimer());
 

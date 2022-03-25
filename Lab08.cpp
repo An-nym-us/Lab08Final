@@ -83,9 +83,6 @@ using namespace std;
 
 
 
-
-bool startSim = false; // inilize sim outside loop.
-bool tempLaunchPRohectile = false;
 void callBack(const Interface* pUI, void* p)
 {
    // the first step is to cast the void pointer into a game object. This
@@ -113,23 +110,23 @@ void callBack(const Interface* pUI, void* p)
    // fire that gun
    if (pUI->isSpace())
    {
-       //pGameStateInstance->activatePreFlightCheck();   
+       pGameStateInstance->activatePreFlightCheck();
    }
 
 
 
 
-   //if (pGameStateInstance->isPreFlightCheckComplete())
-   //{
-   //    //pGameStateInstance->deactivatePreFlightCheck();
-   //    //pGameStateInstance->activateSimulation();
-   //}
+   if (pGameStateInstance->isPreFlightCheckComplete())
+   {
+       pGameStateInstance->deactivatePreFlightCheck();
+       pGameStateInstance->activateSimulation();
+   }
 
 
-   //if (pGameStateInstance->isSimActive())
-   //{
-   //    //pGameStateInstance->activeSimulationTickProgression();
-   //}
+   if (pGameStateInstance->isSimActive())
+   {
+       pGameStateInstance->activeSimulationTickProgression();
+   }
 
 
    pGameStateInstance->displayScreen();

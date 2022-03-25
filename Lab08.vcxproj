@@ -140,7 +140,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="acceleration .cpp" />
-    <ClCompile Include="environment.cpp" />
     <ClCompile Include="environmentalConstants .cpp" />
     <ClCompile Include="gameState.cpp" />
     <ClCompile Include="ground.cpp" />
@@ -154,7 +153,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="acceleration.h" />
-    <ClInclude Include="environment.h" />
     <ClInclude Include="environmentalConstants.h" />
     <ClInclude Include="gameState.h" />
     <ClInclude Include="ground.h" />

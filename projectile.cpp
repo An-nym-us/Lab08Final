@@ -1,5 +1,5 @@
 #include "projectile.h"
-#include "environment.h"
+
 #include "position.h"
 
 
@@ -11,7 +11,7 @@
  *************************************************************************/
 void Projectile::refreshProjectileTail()
 {
-	projectileTail.insert(projectileTail.begin(), this->getCurrentPointLocation());
+	projectileTail.insert(projectileTail.begin(), *this->getCurrentPointLocation());
 
 	if (projectileTail.size() > 19)
 	{
@@ -26,16 +26,14 @@ void Projectile::refreshProjectileTail()
 Position& Projectile::getProjectileTail(double j)
 {
 	for (int i = 0; i < 20; i++)
-	{
+    {
 		if (i == j && i < projectileTail.size())
 		{
 			return projectileTail[i];
 		}
 	}
 
-
 }
-
 
 
 /*
@@ -43,8 +41,8 @@ Position& Projectile::getProjectileTail(double j)
 */
 void Projectile::initializeProjectileLaunchState(double launchAngle, Position const&  launchLocation ) 
 {
-	this->setCurrentLocationX(launchLocation.getMetersX());
-	this->setCurrentLocationY(launchLocation.getMetersY());
+	this->getCurrentPointLocation()->setMetersX(launchLocation.getMetersX());
+	this->getCurrentPointLocation()->setMetersY(launchLocation.getMetersY());
 
 	/*****************************************************************
 	* The reason why we have the get initl velocity inside the acceleration
@@ -53,11 +51,11 @@ void Projectile::initializeProjectileLaunchState(double launchAngle, Position co
 	*****************************************************************/
 
 
-	accelerationInstance->setDDx(sin(launchAngle) * PROJECTILEINITVELOCITY / 1);
-	accelerationInstance->setDDy(cos(launchAngle) * PROJECTILEINITVELOCITY / 1);
+	accelerationInstance->setDDx(sin(launchAngle) * muzzleVelocity / 1);
+	accelerationInstance->setDDy(cos(launchAngle) * muzzleVelocity / 1);
 
-	velocityInstance->setDx(sin(launchAngle) * PROJECTILEINITVELOCITY);
-	velocityInstance->setDy(cos(launchAngle) * PROJECTILEINITVELOCITY);
+	velocityInstance->setDx(sin(launchAngle) * muzzleVelocity);
+	velocityInstance->setDy(cos(launchAngle) * muzzleVelocity);
 
 }
 
@@ -72,9 +70,9 @@ void Projectile::applyPhysics()
 	passed into the methods will be changed and alter with in each of the methods
 	************************************************************/
 
-	Environment().applyDrag(accelerationInstance, velocityInstance, currentLocation, PROJECTILEINITMASS, PROJECTILERADIUS);
-	Environment().applyGravity(accelerationInstance);  // Apply gravity to projectile based on its current altitude
-	Environment().applyIniteria(accelerationInstance, velocityInstance, currentLocation); // Apply initeria to the projectile
+	EnvironmentalConstants().applyDrag(accelerationInstance, velocityInstance, currentLocation, PROJECTILEINITMASS, PROJECTILERADIUS);
+	EnvironmentalConstants().applyGravity(accelerationInstance);  // Apply gravity to projectile based on its current altitude
+	EnvironmentalConstants().applyIniteria(accelerationInstance, velocityInstance, currentLocation); // Apply initeria to the projectile
 
 }
 
@@ -82,22 +80,4 @@ void Projectile::applyPhysics()
 
 
 
-
-
-double Projectile::getLocationX()
-{
-	return currentLocation->getMetersX();
-}
-double Projectile::getLocationY()
-{
-	return currentLocation->getMetersY();
-}
-void Projectile::setCurrentLocationX(double X)
-{
-	currentLocation->setMetersX(X);
-}
-void Projectile::setCurrentLocationY(double Y)
-{
-	currentLocation->setMetersY(Y);
-}
 

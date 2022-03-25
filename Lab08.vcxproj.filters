@@ -30,9 +30,6 @@
     <ClCompile Include="ground.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="environment.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="environmentalConstants .cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -63,9 +60,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="uiInteract.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="environment.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="environmentalConstants.h">
