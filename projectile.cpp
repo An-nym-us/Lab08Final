@@ -32,7 +32,6 @@ Position& Projectile::getProjectileTail(double j)
 			return projectileTail[i];
 		}
 	}
-
 }
 
 
@@ -51,8 +50,10 @@ void Projectile::initializeProjectileLaunchState(double launchAngle, Position co
 	*****************************************************************/
 
 
-	accelerationInstance->setDDx(sin(launchAngle) * muzzleVelocity / 1);
-	accelerationInstance->setDDy(cos(launchAngle) * muzzleVelocity / 1);
+	accelerationInstance->setDDx(sin(launchAngle) * muzzleVelocity);
+	accelerationInstance->setDDy(cos(launchAngle) * muzzleVelocity);
+
+
 
 	velocityInstance->setDx(sin(launchAngle) * muzzleVelocity);
 	velocityInstance->setDy(cos(launchAngle) * muzzleVelocity);
@@ -69,7 +70,7 @@ void Projectile::applyPhysics()
 	These systems need to be intergrate. Note all systems are passed by point, so the values
 	passed into the methods will be changed and alter with in each of the methods
 	************************************************************/
-
+	//cout << accelerationInstance->getDDy() << endl;
 	EnvironmentalConstants().applyDrag(accelerationInstance, velocityInstance, currentLocation, PROJECTILEINITMASS, PROJECTILERADIUS);
 	EnvironmentalConstants().applyGravity(accelerationInstance);  // Apply gravity to projectile based on its current altitude
 	EnvironmentalConstants().applyIniteria(accelerationInstance, velocityInstance, currentLocation); // Apply initeria to the projectile

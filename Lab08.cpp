@@ -22,56 +22,6 @@
 #include "gameState.h"
 using namespace std;
 
-/*************************************************************************
- * GameState
- *************************************************************************/
-//class GameState
-//{
-//public:
-//   GameState(Position ptUpperRight) :
-//      ptUpperRight(ptUpperRight),
-//      ground(ptUpperRight),
-//      time(0.0),
-//      angle(0.0)
-//   {
-//      ptHowitzer.setPixelsX(Position(ptUpperRight).getPixelsX() / 2.0);
-//      ptHowitzer.setPixelsY(Position(ptUpperRight).getPixelsY() / 4.0  );
-//
-//      ground.reset(ptHowitzer);
-//
-//      for (int i = 0; i < 20; i++)
-//      {
-//
-//         projectilePath[i].setPixelsX((double)i * 2.0);
-//         projectilePath[i].setPixelsY((double)i * 2.0);
-//
-//         projectilePath[i].setPixelsY(ptUpperRight.getPixelsY() / 1.5);
-//
-//      }
-//   }
-//
-//   Ground ground;                 // the ground
-//   Position  projectilePath[20];  // path of the projectile
-//   Position  ptHowitzer;          // location of the howitzer
-//   Position  ptUpperRight;        // size of the screen
-//   double angle;                  // angle of the howitzer
-//   double time;                   // amount of time since the last firing
-//};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*************************************
  * All the interesting work happens here, when
@@ -130,9 +80,6 @@ void callBack(const Interface* pUI, void* p)
 
 
    pGameStateInstance->displayScreen();
-
- 
-
 
 
 

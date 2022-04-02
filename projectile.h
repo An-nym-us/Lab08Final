@@ -11,11 +11,12 @@
 #pragma once
 #include "environmentalConstants.h"
 #include "position.h"
+#include <iostream>
 #include <vector>
 #include "uiDraw.h"
 #include "velocity.h"
 #include "acceleration.h"
-
+using namespace std;
 
 
 
@@ -56,7 +57,7 @@ public:
 
 private:
     const double PROJECTILEINITMASS = 46.7; // In KG
-    const double PROJECTILERADIUS = .15489 / 2.00; // In meters
+    const double PROJECTILERADIUS = 0.077445; // In meters
     double muzzleVelocity;
 
     

@@ -197,11 +197,9 @@ double EnvironmentalConstants::getGravityAtAltitude(double altitude) const
 *****************************************************************/
 double EnvironmentalConstants::getForceOnSheelDueToDrag(double altitude, double velocity, double surfaceArea)
 {
-	double mach = velocity / EnvironmentalConstants().getSpeedOfSoundAtAltitude(altitude);// <=== OMG THIS WORKS!!!!   :D
-	double dragCoe = EnvironmentalConstants().getDragCoefficientAtMach(mach);// <=== OMG THIS WORKS!!!!   :D
-	double p = EnvironmentalConstants().getDensityAtAltitude(altitude);// <=== OMG THIS WORKS!!!!   :D
-
-
+	double mach = velocity / EnvironmentalConstants().getSpeedOfSoundAtAltitude(altitude);// 
+	double dragCoe = EnvironmentalConstants().getDragCoefficientAtMach(mach);// 
+	double p = EnvironmentalConstants().getDensityAtAltitude(altitude);// 
 
 	return .5 * dragCoe * p * (velocity * velocity) * surfaceArea;
 
@@ -230,22 +228,20 @@ double EnvironmentalConstants::getDragAccelerationAtPosition(Velocity& currentVe
 void EnvironmentalConstants::applyGravity(Acceleration* position)
 {
 	position->addDDY(EnvironmentalConstants().getGravityAtAltitude(position->getDDy()));
+
 }
 
 
 
 void EnvironmentalConstants::applyIniteria(Acceleration* currentAcceleration, Velocity* currentVelocity, Position* currentProjectilePosition)
 {
-	currentVelocity->setDx(currentAcceleration->getDDx() * .5);
-	currentVelocity->setDy(currentAcceleration->getDDy() * .5);
+	double timedil = .77;	
 
-	double timedil = .5;
-	double temp = currentProjectilePosition->getMetersY() + (currentVelocity->getDy() * timedil) + (.5 * currentAcceleration->getDDy() * (timedil * timedil));
+	currentVelocity->setDx(currentAcceleration->getDDx()* timedil);
+	currentVelocity->setDy(currentAcceleration->getDDy()* timedil);
+	currentProjectilePosition->addMetersY(currentVelocity->getDy() * timedil + (.5 * currentAcceleration->getDDy() * (timedil * timedil)));
+	currentProjectilePosition->addMetersX(currentVelocity->getDx() * timedil + (.5 * currentAcceleration->getDDx() * (timedil * timedil)));
 
-	currentProjectilePosition->setMetersY(temp);
-
-	double temp2 = currentProjectilePosition->getMetersX() + (currentVelocity->getDx() * timedil) + (.5 * currentAcceleration->getDDx() * (timedil * timedil));
-	currentProjectilePosition->setMetersX(temp2);
 
 }
 
@@ -269,6 +265,8 @@ void EnvironmentalConstants::applyDrag(Acceleration* currentAcceleration, Veloci
 	/* Refresh the new acceleration based on the angle of travel */
 	tempStateDDX = tempStateDDX + sin(currentAngleOfTravel) * accelerationDueToDrag;
 	tempStateDDY = tempStateDDY + cos(currentAngleOfTravel) * accelerationDueToDrag;
+
+
 
 	/* Update the acceleration */
 	currentAcceleration->setDDx(tempStateDDX);

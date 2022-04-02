@@ -106,7 +106,7 @@ void GameState::displayScreen()
     // draw the projectile
     for (int i = 0; i <20; i++)
     {  
-        gout.drawProjectile(this->getProjectile()->getProjectileTail(i), i *.5);        
+       gout.drawProjectile(this->getProjectile()->getProjectileTail(i), i *.5);        
     }
 
 

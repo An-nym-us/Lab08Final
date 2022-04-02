@@ -56,40 +56,9 @@ public:
     }
 
 
-    double getSpeed() { return sqrt(dx * dx + dy * dy); }
+    double getSpeed() { 
+       return sqrt(dx * dx + dy * dy); }
     
-
-    double setSpeed();
-    
-
-
-
-
-
-    
-
-  
-
-
-
-
-
-    //void addDx(double addDx) {
-    //    setDx(getDx() + addDx);
-    //}
-
-    //void addDY(double addDy)
-    //{
-    //    setDy(getDy() + addDy);
-    //}
-    //
-    //void reverse()
-    //{
-    //    dx *= -1.0;
-    //    dy *= -1.0;
-    //}
-
-
 
 private:
     double dx;
