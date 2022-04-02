@@ -2,6 +2,10 @@
 
 
 
+/*****************************************************************
+*
+*
+*****************************************************************/
 Howitzer::Howitzer(Position ptUpperRight) :ptUpperRight(ptUpperRight), ground(ptUpperRight)
 {
 
@@ -15,6 +19,10 @@ Howitzer::Howitzer(Position ptUpperRight) :ptUpperRight(ptUpperRight), ground(pt
 
 
 
+/*****************************************************************
+*
+*
+*****************************************************************/
 double Howitzer::randomDoubleInRange()
 {
     return (rand() % 2) + 1.7;
